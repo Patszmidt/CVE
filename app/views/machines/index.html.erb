@@ -1,0 +1,15 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Machines</h1>
+
+<div class="table" id="machines">
+  <% @machines.each do |machine| %>
+    <%= render machine %>
+    <div class="table-cell">
+      <%= link_to "Détails de la machine", machine %>
+    </div>
+   </div>
+  <% end %>
+</div>
+
+<%= link_to "Nouvelle machine", new_machine_path %>

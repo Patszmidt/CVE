@@ -1,0 +1,17 @@
+<p style="color: green"><%= notice %></p>
+
+<div class="table" id="ressource">
+	<div class="table-row">
+		<div class="table-cell">Matière</div>
+		<div class="table-cell">Epaisseur</div>
+		<div class="table-cell">Dimensions</div>
+		<div class="table-cell">Couleur</div>
+		<div class="table-cell">Qualité</div>
+	</div>
+	<%= render @ressource %>
+	<div class="table-cell"><%= link_to "Modifier cette ressource", edit_ressource_path(@ressource) %></div>
+	</div>
+</div>
+<p>
+	<%= link_to "Liste des ressources", ressources_path %>
+</p>

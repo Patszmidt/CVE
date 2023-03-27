@@ -1,0 +1,11 @@
+<p style="color: green"><%= notice %></p>
+
+<div class="table" id="utilisateur">
+	<%= render @utilisateur %>
+	<div class="table-cell"><%= link_to "Modifier cet utilisateur", edit_utilisateur_path(@utilisateur) %></div>
+	</div>
+</div>
+<p>
+	<%= link_to "Liste des utilisateurs", utilisateurs_path %>
+</p>
+

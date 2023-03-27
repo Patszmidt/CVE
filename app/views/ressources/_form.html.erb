@@ -1,0 +1,44 @@
+<%= form_with(model: ressource) do |form| %>
+  <% if ressource.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(ressource.errors.count, "error") %> prohibited this ressource from being saved:</h2>
+
+      <ul>
+        <% ressource.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div>
+    <%= form.label :matiere_id, style: "display: block" %>
+    <%= form.collection_select(:matiere_id, @matieres, :id, :nom, {:prompt => true}) %>
+  </div>
+
+  <div>
+    <%= form.label :epaisseur, style: "display: block" %>
+    <%= form.text_field :epaisseur %>mm
+  </div>
+
+  <div>
+    <%= form.label :dimension, style: "display: block" %>
+    <%= form.text_field :dimension %>
+  </div>
+  
+  <div>
+    <%= form.label :couleur, style: "display: block" %>
+    <%= form.text_field :couleur %>
+  </div>
+  
+  <div>
+    <%= form.label :qualite, style: "display: block" %>
+    <%= form.text_field :qualite %>
+  </div>
+
+
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

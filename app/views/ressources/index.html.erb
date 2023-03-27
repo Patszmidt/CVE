@@ -1,0 +1,22 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Ressources</h1>
+
+<div class="table" id="ressources">
+	<div class="table-row">
+		<div class="table-cell">Matière</div>
+		<div class="table-cell">Epaisseur</div>
+		<div class="table-cell">Dimensions</div>
+		<div class="table-cell">Couleur</div>
+		<div class="table-cell">Qualité</div>
+	</div>
+  <% @ressources.each do |ressource| %>
+    <%= render ressource %>
+    <div class="table-cell">
+      <%= link_to "Détails de la ressource", ressource %>
+    </div>
+   </div>
+  <% end %>
+</div>
+
+<%= link_to "Nouvelle ressource", new_ressource_path %>

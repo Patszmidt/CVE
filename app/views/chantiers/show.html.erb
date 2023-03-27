@@ -1,0 +1,21 @@
+<p style="color: green"><%= notice %></p>
+
+<div class="table" id="chantier">
+	<%= render @chantier %>
+	<div class="table-cell"><%= link_to "Modifier ce chantier", edit_chantier_path(@chantier) %></div>
+	</div>
+</div>
+<h2>Utilisations sur ce chantier</h2>
+<div class="table" id="utilisations">
+  <% @chantier.utilisations.order(date: :desc).each do |utilisation| %>
+    <%= render utilisation %>
+    <div class="table-cell">
+      <%= link_to "Modifier", edit_utilisation_path(utilisation) %>
+    </div>
+   </div>
+  <% end %>
+</div>
+
+<p>
+	<%= link_to "Liste des chantiers", chantiers_path %>
+</p>

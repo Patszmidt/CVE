@@ -1,0 +1,6 @@
+<div class="table-row <%= utilisation.status %>" id="<%= dom_id utilisation %>">
+    <div class="table-cell"><%= utilisation.date.strftime("%d/%m/%Y") %></div>
+    <div class="table-cell"><%= utilisation.quantite %></div>
+    <div class="table-cell"><%= utilisation.ressource.nom_complet %></div>
+    <div class="table-cell"><%= utilisation.machine.nom %></div>
+    <div class="table-cell"><%= utilisation.chantier.nom_complet %></div>

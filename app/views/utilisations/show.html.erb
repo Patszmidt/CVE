@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<div class="table" id="utilisation">
+	<%= render @utilisation %>
+	<div class="table-cell"><%= link_to "Modifier cette utilisation", edit_utilisation_path(@utilisation) %></div>
+	</div>
+</div>
+<p>
+	<%= link_to "Liste des utilisations", utilisations_path %>
+</p>

@@ -1,0 +1,21 @@
+<p style="color: green"><%= notice %></p>
+
+<div class="table" id="client">
+	<%= render @client %>
+	<div class="table-cell"><%= link_to "Modifier ce client", edit_client_path(@client) %></div>
+	</div>
+</div>
+<h2>Chantiers associés à ce client</h2>
+<div class="table" id="chantiers">
+  <% @client.chantiers.each do |chantier| %>
+    <%= render chantier %>
+    <div class="table-cell">
+      <%= link_to "Détails du chantier", chantier %>
+    </div>
+   </div>
+  <% end %>
+</div>
+<p>
+	<%= link_to "Liste des clients", clients_path %>
+</p>
+

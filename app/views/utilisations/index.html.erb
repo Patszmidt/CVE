@@ -1,0 +1,32 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Utilisations</h1>
+
+<div class="table" id="utilisations">
+  <% @utilisations.each do |utilisation| %>
+    <%= render utilisation %>
+    <div class="table-cell">
+      <%= link_to "Modifier", edit_utilisation_path(utilisation) %>
+    </div>
+   </div>
+  <% end %>
+</div>
+ 
+  <div>
+      <h2>Afficher les utilisations</h2>
+      <%= form_with(url: utilisations_path, method: :get, data: {turbo_frame: "utilisations"}) do |form| %>
+      <div>
+          <%= form.label :start_date, "Depuis"  %>
+          <%= form.date_field :start_date %>
+      </div>
+      <div>
+          <%= form.label :start_date, "jusqu'à"  %>
+          <%= form.date_field :end_date %>
+      </div>
+          <%= form.submit 'Chercher' %>
+      <% end %>
+
+  </div>
+  <div>
+	<%= link_to "Nouvelle utilisation", new_utilisation_path %>
+  </div>

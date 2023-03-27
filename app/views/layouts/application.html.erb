@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cve</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+
+	<div class="wrapper">
+       <div class="section">
+
+    	<div class="container">
+      		<%= yield %>
+    	</div>
+  	</div>
+        <div class="sidebar">
+            <div class="profile">
+                <%= link_to(root_path) do %>
+                	<%= image_tag 'Logo_CVE.png' %>
+                <% end %>
+            </div>
+            <ul>
+            	<li>
+                    <%= link_to "Utilisations", utilisations_path %>
+                </li>
+                <ul>
+                	<li><%= link_to "Nouvelle utilisation", new_utilisation_path %></li>
+                </ul>
+                <li>
+                    <%= link_to "Ressources", ressources_path %>
+                </li>
+                <li>
+                    <%= link_to "Matières", matieres_path %>
+                </li>
+                <li>
+                    <%= link_to "Chantiers", chantiers_path %>
+                </li>
+                <li>
+                    <%= link_to "Clients", clients_path  %>
+                </li>                
+                <li>
+                    <%= link_to "Utilisateurs", utilisateurs_path %>
+                </li>
+                <li>
+                    <%= link_to "Machines", machines_path %>
+                </li>
+                
+                
+            </ul>
+        </div>
+        
+    </div>
+    
+  </body>
+</html>
+
+

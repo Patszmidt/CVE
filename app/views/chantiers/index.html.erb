@@ -1,0 +1,15 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Chantiers</h1>
+
+<div class="table" id="chantiers">
+  <% @chantiers.each do |chantier| %>
+    <%= render chantier %>
+    <div class="table-cell">
+      <%= link_to "Détails du chantier", chantier %>
+    </div>
+   </div>
+  <% end %>
+</div>
+
+<%= link_to "Nouveau chantier", new_chantier_path %>

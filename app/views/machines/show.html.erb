@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<div class="table" id="machine">
+	<%= render @machine %>
+	<div class="table-cell"><%= link_to "Modifier cette machine", edit_machine_path(@machine) %></div>
+	</div>
+</div>
+<p>
+	<%= link_to "Liste des machines", machines_path %>
+</p>

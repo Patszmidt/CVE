@@ -1,0 +1,59 @@
+<%= form_with(model: utilisation) do |form| %>
+  <% if utilisation.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(utilisation.errors.count, "error") %> prohibited this utilisation from being saved:</h2>
+
+      <ul>
+        <% utilisation.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :utilisateur_id, style: "display: block" %>
+    <%= form.collection_select(:utilisateur_id, Utilisateur.all, :id, :nom_complet, {prompt: 'Choisir un utilisateur'}) %>
+  </div>
+
+  <div>
+    <%= form.label :chantier_id, style: "display: block" %>
+    <%= form.collection_select(:chantier_id, Chantier.all, :id, :nom_complet, { prompt: 'Choisir un chantier' }) %>
+  </div>
+
+
+  <div>
+    <%= form.label :machine_id, style: "display: block" %>
+    <%= form.collection_select(:machine_id, Machine.all, :id, :nom, {prompt: 'Choisir une machine'}) %>
+  </div>
+  
+  <div data-controller="select">
+	  <div>
+	    <%= form.label :matiere_id, style: "display: block" %>
+	    <%= form.collection_select :matiere_id, Matiere.all.order(:nom), :id, :nom, { prompt: 'Choisir une matière' }, {data: {action: "change->select#change"}} %>
+	  </div>
+	  <div>
+	    <%= form.label :ressource_id, style: "display: block" %>
+	    <%= form.collection_select(:ressource_id, @ressources, :id, :nom_complet, { prompt: 'Choisir une ressource' }, {data: {select_target: "ressource"}}) %>
+	  </div>
+  </div>
+
+  <div>
+    <%= form.label :quantite, style: "display: block" %>
+    <%= form.number_field :quantite %>
+  </div>
+  
+  <div>
+    <%= form.label :date, style: "display: block" %>
+    <%= form.date_field :date, value: if utilisation.date.present? then utilisation.date else Date.today end %>
+  </div>
+  
+  <div>
+    <%= form.label :checked, "Traité ?",style: "display: block" %>
+    <%= form.check_box :checked %>
+  </div>
+
+  <div>
+    <%= form.submit "Enregistrer" %>
+  </div>
+<% end %>

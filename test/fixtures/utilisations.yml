@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  utilisateur: one
+  chantier: one
+  machine: one
+  ressource: one
+  date: 2023-03-24
+  quantite: 1
+
+two:
+  utilisateur: two
+  chantier: two
+  machine: two
+  ressource: two
+  date: 2023-03-24
+  quantite: 1

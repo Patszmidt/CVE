@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  epaisseur: 1.5
+  dimension: MyString
+  matiere: one
+
+two:
+  epaisseur: 1.5
+  dimension: MyString
+  matiere: two
