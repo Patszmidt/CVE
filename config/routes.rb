@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       get :ressources
     end
   end
+  get '/utilisations/:id/traiter', to: 'utilisations#traiter', as: 'traiter_utilisation'
   resources :ressources
   resources :matieres
   resources :machines

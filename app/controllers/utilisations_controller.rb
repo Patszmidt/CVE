@@ -1,5 +1,5 @@
 class UtilisationsController < ApplicationController
-  before_action :set_utilisation, only: %i[ show edit update destroy ]
+  before_action :set_utilisation, only: %i[ show edit update destroy traiter]
   before_action :set_ressources
 
   # GET /utilisations or /utilisations.json
@@ -24,6 +24,12 @@ class UtilisationsController < ApplicationController
       render :index
     end
     
+  end
+
+  def traiter
+    @utilisation.toggle(:checked)
+    @utilisation.save
+    render partial: "utilisation", locals: { utilisation: @utilisation }
   end
 
   # GET /utilisations/1 or /utilisations/1.json

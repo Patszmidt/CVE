@@ -3,7 +3,7 @@
     <div>
       <h2>Afficher les utilisations</h2>
       
-        <%= form_with(url: utilisations_path, method: :get, data: {turbo_frame: "utilisations"}) do |form| %>
+        <%= form_with(url: utilisations_path, method: :get, data: {turbo_frame: "utilisations", turbo_action: "advance"}) do |form| %>
         <div>
             <%= form.label :start_date, "Depuis"  %>
             <%= form.date_field :start_date %>
@@ -28,13 +28,4 @@
 
 <h1>Utilisations</h1>
 
-<div class="table" id="utilisations">
-
-  <% @utilisations.each do |utilisation| %>
-    <%= render utilisation %>
-    <div class="table-cell">
-      <%= link_to "Modifier", edit_utilisation_path(utilisation) %>
-    </div>
-   </div>
-  <% end %>
-</div>
+<%= render "utilisations", utilisations: @utilisations %>

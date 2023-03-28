@@ -132,6 +132,7 @@ body.active .wrapper .section{
 
 .table-row {
   display: table-row;
+  width: 100%;
 }
 
 .checked{
@@ -146,4 +147,9 @@ body.active .wrapper .section{
   display: table-cell;
   border: 1px solid black;
   padding: 5px;
+}
+
+turbo-frame{
+  width: 100%;
+  display: block;
 }

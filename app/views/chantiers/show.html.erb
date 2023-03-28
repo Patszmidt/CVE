@@ -6,15 +6,9 @@
 	</div>
 </div>
 <h2>Utilisations sur ce chantier</h2>
-<div class="table" id="utilisations">
-  <% @chantier.utilisations.order(date: :desc).each do |utilisation| %>
-    <%= render utilisation %>
-    <div class="table-cell">
-      <%= link_to "Modifier", edit_utilisation_path(utilisation) %>
-    </div>
-   </div>
-  <% end %>
-</div>
+
+<%= render "utilisations/utilisations", utilisations: @chantier.utilisations %>
+
 
 <p>
 	<%= link_to "Liste des chantiers", chantiers_path %>

@@ -1,6 +1,15 @@
-<div class="table-row <%= utilisation.status %>" id="<%= dom_id utilisation %>">
-    <div class="table-cell"><%= utilisation.date.strftime("%d/%m/%Y") %></div>
-    <div class="table-cell"><%= utilisation.quantite %></div>
-    <div class="table-cell"><%= utilisation.ressource.nom_complet %></div>
-    <div class="table-cell"><%= utilisation.machine.nom %></div>
-    <div class="table-cell"><%= utilisation.chantier.nom_complet %></div>
+<div>
+<%= turbo_frame_tag dom_id utilisation do %>
+    <div class="table-row <%= utilisation.status %>">
+    
+        <div class="table-cell"><%= utilisation.date.strftime("%d/%m/%Y") %></div>
+        <div class="table-cell"><%= utilisation.quantite %></div>
+        <div class="table-cell"><%= utilisation.ressource.nom_complet %></div>
+        <div class="table-cell"><%= utilisation.machine.nom %></div>
+        <div class="table-cell"><%= utilisation.chantier.nom_complet %></div>
+        <div class="table-cell"><%= link_to "Traiter", traiter_utilisation_path(utilisation) %></div>
+        <div class="table-cell"><%= link_to "Modifier", edit_utilisation_path(utilisation), data: { turbo: false } %></div>
+   
+    </div>
+ <% end %>
+ </div>
