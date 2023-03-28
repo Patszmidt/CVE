@@ -13,18 +13,15 @@
             <%= form.date_field :end_date %>
         </div>
         <div>
-            <%= form.label :a_traiter, "Afficher uniquement les utilisations à traiter"  %>
-            <%= form.check_box :a_traiter %>
+            <%= form.label :tout, "Afficher toutes les utilisations"  %>
+            <%= form.check_box :tout %>
         </div>
         <div>
             <%= form.submit 'Afficher' %>
         </div>
         <% end %>
     </div>
-    <div>
-	    <%= link_to "Nouvelle utilisation", new_utilisation_path %>
-      
-    </div>
+
 
 <h1>Utilisations</h1>
 

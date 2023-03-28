@@ -4,10 +4,10 @@ class UtilisationsController < ApplicationController
 
   # GET /utilisations or /utilisations.json
   def index
-    if params[:a_traiter] && params[:a_traiter] == "1"
-      utilisations = Utilisation.where(checked: false).order(date: :desc)
-    else
+    if params[:tout] && params[:tout] == "1"
       utilisations = Utilisation.all.order(date: :desc)
+    else
+      utilisations = Utilisation.where(checked: false).order(date: :desc)
     end
 
     if params[:start_date].present?
