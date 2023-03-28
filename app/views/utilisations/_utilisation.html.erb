@@ -1,6 +1,6 @@
 <div>
-<%= turbo_frame_tag dom_id utilisation do %>
-    <div class="table-row <%= utilisation.status %>">
+<%= turbo_frame_tag utilisation, class: "table-row" do %>
+    <div class="<%= utilisation.status %>">
     
         <div class="table-cell"><%= utilisation.date.strftime("%d/%m/%Y") %></div>
         <div class="table-cell"><%= utilisation.quantite %></div>
@@ -12,4 +12,4 @@
    
     </div>
  <% end %>
- </div>
+</div>
