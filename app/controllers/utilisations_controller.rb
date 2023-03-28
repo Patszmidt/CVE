@@ -4,12 +4,18 @@ class UtilisationsController < ApplicationController
 
   # GET /utilisations or /utilisations.json
   def index
-    if params[:start_date].present?
-      start_date = Date.parse(params[:start_date])
-      end_date = Date.parse(params[:end_date])
-      @utilisations = Utilisation.where(date: start_date..end_date).order(date: :desc)
+    if params[:a_traiter] && params[:a_traiter] == "1"
+      utilisations = Utilisation.where(checked: false).order(date: :desc)
     else
-      @utilisations = Utilisation.all.order(date: :desc)
+      utilisations = Utilisation.all.order(date: :desc)
+    end
+
+    if params[:start_date].present?
+      @start_date = Date.parse(params[:start_date])
+      @end_date = Date.parse(params[:end_date])
+      @utilisations = utilisations.where(date: @start_date..@end_date).order(date: :desc)
+    else
+      @utilisations = utilisations
     end
     
     if turbo_frame_request?
