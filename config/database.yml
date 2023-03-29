@@ -92,5 +92,5 @@ test:
 production:
   <<: *default
   database: cve_production
-  username: postgre
-  password: <%= ENV["MYSITE_DATABASE_PASSWORD"] %>
+  username: postgres
+  password: <%= ENV["CVE_DATABASE_PASSWORD"] %>

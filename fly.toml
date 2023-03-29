@@ -1,6 +1,6 @@
-# fly.toml file generated for cve on 2023-03-23T16:51:19+01:00
+# fly.toml file generated for cve2 on 2023-03-29T11:21:56+02:00
 
-app = "cve"
+app = "cve2"
 kill_signal = "SIGINT"
 kill_timeout = 5
 primary_region = "cdg"
