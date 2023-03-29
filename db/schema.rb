@@ -11,9 +11,12 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2023_03_27_091240) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "chantiers", force: :cascade do |t|
     t.string "nom"
-    t.integer "client_id", null: false
+    t.bigint "client_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["client_id"], name: "index_chantiers_on_client_id"
@@ -40,7 +43,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_27_091240) do
   create_table "ressources", force: :cascade do |t|
     t.float "epaisseur"
     t.string "dimension"
-    t.integer "matiere_id", null: false
+    t.bigint "matiere_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "couleur"
@@ -56,10 +59,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_27_091240) do
   end
 
   create_table "utilisations", force: :cascade do |t|
-    t.integer "utilisateur_id", null: false
-    t.integer "chantier_id", null: false
-    t.integer "machine_id", null: false
-    t.integer "ressource_id", null: false
+    t.bigint "utilisateur_id", null: false
+    t.bigint "chantier_id", null: false
+    t.bigint "machine_id", null: false
+    t.bigint "ressource_id", null: false
     t.date "date"
     t.integer "quantite"
     t.datetime "created_at", null: false

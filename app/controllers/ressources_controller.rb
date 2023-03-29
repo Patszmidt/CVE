@@ -4,7 +4,7 @@ class RessourcesController < ApplicationController
 
   # GET /ressources or /ressources.json
   def index
-    @ressources = Ressource.all.order(:matiere_id, :epaisseur)
+    @ressources = Ressource.all.order(:matiere_id, :epaisseur, :couleur)
   end
 
   # GET /ressources/1 or /ressources/1.json
