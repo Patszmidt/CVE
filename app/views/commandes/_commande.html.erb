@@ -1,0 +1,16 @@
+<div>
+<%= turbo_frame_tag commande, class: "table-row" do %>
+    <div class="<%= commande.status %>">
+    
+        <div class="table-cell"><%= commande.date_de_commande.strftime("%d/%m/%Y") %></div>
+        <div class="table-cell"><%= commande.quantite %></div>
+        <div class="table-cell"><%= commande.ressource.nom_complet %></div>
+        <div class="table-cell"><%= commande.chantier.nom_complet %></div>
+        <div class="table-cell"><%= commande.commentaire %></div>
+        <div class="table-cell"><%= link_to "livrer", livrer_commande_path(commande) %></div>
+        <div class="table-cell"><%= link_to "Modifier", edit_commande_path(commande), data: { turbo: false } %></div>
+   
+    </div>
+ <% end %>
+</div>
+

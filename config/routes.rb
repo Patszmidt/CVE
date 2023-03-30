@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :commandes
   devise_for :users
   
   resources :utilisations do
@@ -7,6 +8,7 @@ Rails.application.routes.draw do
     end
   end
   get '/utilisations/:id/traiter', to: 'utilisations#traiter', as: 'traiter_utilisation'
+  get '/commandes/:id/livrer', to: 'commandes#livrer', as: 'livrer_commande'
   resources :ressources
   resources :matieres
   resources :machines

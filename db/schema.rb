@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_30_082516) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_30_121332) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -26,6 +26,22 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_30_082516) do
     t.string "nom"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "commandes", force: :cascade do |t|
+    t.bigint "utilisateur_id", null: false
+    t.bigint "chantier_id", null: false
+    t.bigint "ressource_id", null: false
+    t.date "date_de_commande"
+    t.date "date_de_livraison"
+    t.boolean "livre"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "quantite"
+    t.string "commentaire"
+    t.index ["chantier_id"], name: "index_commandes_on_chantier_id"
+    t.index ["ressource_id"], name: "index_commandes_on_ressource_id"
+    t.index ["utilisateur_id"], name: "index_commandes_on_utilisateur_id"
   end
 
   create_table "machines", force: :cascade do |t|
@@ -87,6 +103,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_30_082516) do
   end
 
   add_foreign_key "chantiers", "clients"
+  add_foreign_key "commandes", "chantiers"
+  add_foreign_key "commandes", "ressources"
+  add_foreign_key "commandes", "utilisateurs"
   add_foreign_key "ressources", "matieres"
   add_foreign_key "utilisations", "chantiers"
   add_foreign_key "utilisations", "machines"

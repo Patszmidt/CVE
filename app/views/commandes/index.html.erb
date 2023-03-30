@@ -1,0 +1,28 @@
+<p style="color: green"><%= notice %></p>
+
+    <div>
+      <h2>Afficher les commandes</h2>
+      
+        <%= form_with(url: commandes_path, method: :get, data: {turbo_frame: "commandes", turbo_action: "advance"}) do |form| %>
+        <div>
+            <%= form.label :start_date, "Depuis"  %>
+            <%= form.date_field :start_date %>
+        </div>
+        <div>
+            <%= form.label :start_date, "jusqu'à"  %>
+            <%= form.date_field :end_date %>
+        </div>
+        <div>
+            <%= form.label :tout, "Afficher toutes les commandes"  %>
+            <%= form.check_box :tout %>
+        </div>
+        <div>
+            <%= form.submit 'Afficher' %>
+        </div>
+        <% end %>
+    </div>
+
+
+<h1>commandes</h1>
+
+<%= render "commandes", commandes: @commandes %>

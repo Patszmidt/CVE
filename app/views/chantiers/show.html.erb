@@ -9,6 +9,10 @@
 
 <%= render "utilisations/utilisations", utilisations: @chantier.utilisations %>
 
+<h2>Commandes sur ce chantier</h2>
+
+<%= render "commandes/commandes", commandes: @chantier.commandes %>
+
 
 <p>
 	<%= link_to "Liste des chantiers", chantiers_path %>
