@@ -1,6 +1,8 @@
-<p style="color: green"><%= notice %></p>
-
 <h1>Chantiers</h1>
+
+<p>
+  <%= link_to "Nouveau chantier", new_chantier_path %>
+</p>
 
 <div class="table" id="chantiers">
   <% @chantiers.each do |chantier| %>
@@ -12,4 +14,3 @@
   <% end %>
 </div>
 
-<%= link_to "Nouveau chantier", new_chantier_path %>

@@ -1,6 +1,8 @@
-<p style="color: green"><%= notice %></p>
-
 <h1>Machines</h1>
+
+<p>
+  <%= link_to "Nouvelle machine", new_machine_path %>
+</p>
 
 <div class="table" id="machines">
   <% @machines.each do |machine| %>
@@ -12,4 +14,4 @@
   <% end %>
 </div>
 
-<%= link_to "Nouvelle machine", new_machine_path %>
+

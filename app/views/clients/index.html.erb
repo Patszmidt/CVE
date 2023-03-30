@@ -1,6 +1,8 @@
-<p style="color: green"><%= notice %></p>
-
 <h1>Clients</h1>
+
+<p>
+  <%= link_to "Nouveau client", new_client_path %>
+</p>
 
 <div class="table" id="clients">
   <% @clients.each do |client| %>
@@ -12,4 +14,4 @@
   <% end %>
 </div>
 
-<%= link_to "Nouveau client", new_client_path %>
+
