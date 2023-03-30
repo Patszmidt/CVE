@@ -5,15 +5,15 @@ class UtilisationsController < ApplicationController
   # GET /utilisations or /utilisations.json
   def index
     if params[:tout] && params[:tout] == "1"
-      utilisations = Utilisation.all.order(date: :desc)
+      utilisations = Utilisation.all.order(created_at: :desc)
     else
-      utilisations = Utilisation.where(checked: false).order(date: :desc)
+      utilisations = Utilisation.where(checked: false).order(created_at: :desc)
     end
 
     if params[:start_date].present?
       @start_date = Date.parse(params[:start_date])
       @end_date = Date.parse(params[:end_date])
-      @utilisations = utilisations.where(date: @start_date..@end_date).order(date: :desc)
+      @utilisations = utilisations.where(date: @start_date..@end_date).order(created_at: :desc)
     else
       @utilisations = utilisations
     end
