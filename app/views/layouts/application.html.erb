@@ -16,6 +16,8 @@
        <div class="section">
 
     	<div class="container">
+            <p class="notice"><%= notice %></p>
+            <p class="alert"><%= alert %></p>
       		<%= yield %>
     	</div>
   	</div>
@@ -49,6 +51,13 @@
                 </li>
                 <li>
                     <%= link_to "Machines", machines_path %>
+                </li>
+                <li>
+                    <% if user_signed_in? %>                     
+                        <%= link_to "Déconnecter #{current_user.email}", destroy_user_session_path, data: { "turbo-method": :delete } %> 
+                    <% else %>
+                        <%= link_to "Se connecter", new_user_session_path %> 
+                    <% end %>
                 </li>
                 
                 
