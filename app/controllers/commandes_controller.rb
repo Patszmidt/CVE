@@ -32,6 +32,10 @@ class CommandesController < ApplicationController
     render partial: "commande", locals: { commande: @commande }
   end
 
+  def create_from_utilisation
+    @commande = current_user.commandes.create_from_utilisation(@utilisation)
+  end
+
   # GET /commandes/1 or /commandes/1.json
   def show
   end
@@ -47,7 +51,7 @@ class CommandesController < ApplicationController
 
   # POST /commandes or /commandes.json
   def create
-    @commande = Commande.new(commande_params)
+    @commande = current_user.commandes.new(commande_params)
 
     respond_to do |format|
       if @commande.save
@@ -95,6 +99,6 @@ class CommandesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def commande_params
-      params.require(:commande).permit(:utilisateur_id, :chantier_id, :ressource_id, :date_de_commande, :date_de_livraison, :livre, :matiere_id, :quantite, :commentaire)
+      params.require(:commande).permit(:user_id, :chantier_id, :ressource_id, :date_de_commande, :date_de_livraison, :livre, :matiere_id, :quantite, :commentaire)
     end
 end

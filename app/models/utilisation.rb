@@ -1,5 +1,5 @@
 class Utilisation < ApplicationRecord
-  belongs_to :utilisateur
+  belongs_to :user
   belongs_to :chantier
   belongs_to :machine
   belongs_to :ressource

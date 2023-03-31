@@ -47,7 +47,7 @@ class UtilisationsController < ApplicationController
 
   # POST /utilisations or /utilisations.json
   def create
-    @utilisation = Utilisation.new(utilisation_params)
+    @utilisation = current_user.utilisations.new(utilisation_params)
 
     respond_to do |format|
       if @utilisation.save
@@ -104,6 +104,6 @@ class UtilisationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def utilisation_params
-      params.require(:utilisation).permit(:utilisateur_id, :chantier_id, :machine_id, :ressource_id, :date, :quantite, :matiere_id, :checked)
+      params.require(:utilisation).permit(:user_id, :chantier_id, :machine_id, :ressource_id, :date, :quantite, :matiere_id, :checked)
     end
 end

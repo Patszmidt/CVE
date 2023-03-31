@@ -12,11 +12,6 @@
   <% end %>
 
   <div>
-    <%= form.label :utilisateur_id, style: "display: block" %>
-    <%= form.collection_select(:utilisateur_id, Utilisateur.all, :id, :nom_complet, {prompt: 'Choisir un utilisateur'}) %>
-  </div>
-
-  <div>
     <%= form.label :chantier_id, style: "display: block" %>
     <%= form.collection_select(:chantier_id, Chantier.all.order(:nom), :id, :nom_complet, { prompt: 'Choisir un chantier' }) %>
   </div>

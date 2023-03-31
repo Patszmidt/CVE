@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_30_121332) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_31_054904) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -29,7 +29,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_30_121332) do
   end
 
   create_table "commandes", force: :cascade do |t|
-    t.bigint "utilisateur_id", null: false
     t.bigint "chantier_id", null: false
     t.bigint "ressource_id", null: false
     t.date "date_de_commande"
@@ -39,9 +38,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_30_121332) do
     t.datetime "updated_at", null: false
     t.integer "quantite"
     t.string "commentaire"
+    t.bigint "user_id"
     t.index ["chantier_id"], name: "index_commandes_on_chantier_id"
     t.index ["ressource_id"], name: "index_commandes_on_ressource_id"
-    t.index ["utilisateur_id"], name: "index_commandes_on_utilisateur_id"
+    t.index ["user_id"], name: "index_commandes_on_user_id"
   end
 
   create_table "machines", force: :cascade do |t|
@@ -75,6 +75,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_30_121332) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "prenom"
+    t.string "nom"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -87,7 +89,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_30_121332) do
   end
 
   create_table "utilisations", force: :cascade do |t|
-    t.bigint "utilisateur_id", null: false
     t.bigint "chantier_id", null: false
     t.bigint "machine_id", null: false
     t.bigint "ressource_id", null: false
@@ -96,19 +97,20 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_30_121332) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "checked", default: false
+    t.bigint "user_id"
     t.index ["chantier_id"], name: "index_utilisations_on_chantier_id"
     t.index ["machine_id"], name: "index_utilisations_on_machine_id"
     t.index ["ressource_id"], name: "index_utilisations_on_ressource_id"
-    t.index ["utilisateur_id"], name: "index_utilisations_on_utilisateur_id"
+    t.index ["user_id"], name: "index_utilisations_on_user_id"
   end
 
   add_foreign_key "chantiers", "clients"
   add_foreign_key "commandes", "chantiers"
   add_foreign_key "commandes", "ressources"
-  add_foreign_key "commandes", "utilisateurs"
+  add_foreign_key "commandes", "users"
   add_foreign_key "ressources", "matieres"
   add_foreign_key "utilisations", "chantiers"
   add_foreign_key "utilisations", "machines"
   add_foreign_key "utilisations", "ressources"
-  add_foreign_key "utilisations", "utilisateurs"
+  add_foreign_key "utilisations", "users"
 end
