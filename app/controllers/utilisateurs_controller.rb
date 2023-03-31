@@ -3,7 +3,7 @@ class UtilisateursController < ApplicationController
 
   # GET /utilisateurs or /utilisateurs.json
   def index
-    @utilisateurs = Utilisateur.all
+    @utilisateurs = User.all
   end
 
   # GET /utilisateurs/1 or /utilisateurs/1.json
@@ -12,7 +12,7 @@ class UtilisateursController < ApplicationController
 
   # GET /utilisateurs/new
   def new
-    @utilisateur = Utilisateur.new
+    @utilisateur = User.new
   end
 
   # GET /utilisateurs/1/edit
@@ -21,7 +21,7 @@ class UtilisateursController < ApplicationController
 
   # POST /utilisateurs or /utilisateurs.json
   def create
-    @utilisateur = Utilisateur.new(utilisateur_params)
+    @utilisateur = User.new(utilisateur_params)
 
     respond_to do |format|
       if @utilisateur.save
@@ -60,7 +60,7 @@ class UtilisateursController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_utilisateur
-      @utilisateur = Utilisateur.find(params[:id])
+      @utilisateur = User.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

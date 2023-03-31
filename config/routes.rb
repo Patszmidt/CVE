@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'users/index'
+  get 'users/edit'
   resources :commandes
   devise_for :users
   
@@ -7,17 +9,20 @@ Rails.application.routes.draw do
       get :ressources
     end
   end
+
   get '/utilisations/:id/traiter', to: 'utilisations#traiter', as: 'traiter_utilisation'
   get '/commandes/:id/livrer', to: 'commandes#livrer', as: 'livrer_commande'
+
   resources :ressources
   resources :matieres
   resources :machines
   resources :utilisateurs
-  get 'welcome/index'
+  resources :users
   resources :chantiers
   resources :clients
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
+  get 'welcome/index'
   root "welcome#index"
 end

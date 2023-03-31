@@ -1,0 +1,17 @@
+<h1>Utilisateurs</h1>
+
+<p>
+  <%= link_to "Nouveau utilisateur", new_user_path %>
+</p>
+
+<div class="table" id="utilisateurs">
+  <% @users.each do |user| %>
+    <%= render user %>
+    <div class="table-cell">
+      <%= link_to "Modifier l'utilisateur", edit_user_path(user) %>
+    </div>
+   </div>
+  <% end %>
+</div>
+
+
