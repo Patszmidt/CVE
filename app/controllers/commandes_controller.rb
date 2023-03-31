@@ -28,6 +28,7 @@ class CommandesController < ApplicationController
 
   def livrer
     @commande.toggle(:livre)
+    @commande.date_de_livraison = Date.today
     @commande.save
     render partial: "commande", locals: { commande: @commande }
   end
