@@ -8,6 +8,11 @@
         <div class="table-cell"><%= utilisation.machine.nom %></div>
         <div class="table-cell"><%= utilisation.chantier.nom_complet %></div>
         <div class="table-cell"><%= link_to "Traiter", traiter_utilisation_path(utilisation) %></div>
+        <div class="table-cell">
+            <%= form_with(url: create_commande_from_path(utilisation), method: :post, data: { turbo_frame: "commandes" }) do |form| %>
+                <%= form.submit "Commander" %>
+            <% end %>
+        </div>
         <div class="table-cell"><%= link_to "Modifier", edit_utilisation_path(utilisation), data: { turbo: false } %></div>
    
     </div>

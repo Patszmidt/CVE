@@ -26,13 +26,13 @@ class Commande < ApplicationRecord
     end
   end
 
-  def self.create_from_utilisation(utilisation)
+  def self.create_from(utilisation)
     c = Commande.new
     c.chantier = utilisation.chantier
     c.ressource = utilisation.ressource
     c.quantite = utilisation.quantite
     c.date_de_commande = Date.today
-    c.user = utilisation.user
+    c.livre = false
     c.save
   end
 

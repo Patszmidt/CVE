@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   get '/utilisations/:id/traiter', to: 'utilisations#traiter', as: 'traiter_utilisation'
   get '/commandes/:id/livrer', to: 'commandes#livrer', as: 'livrer_commande'
+  post '/commandes/:id/create_from', to: 'commandes#create_from', as: 'create_commande_from'
 
   resources :ressources
   resources :matieres

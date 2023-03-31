@@ -32,8 +32,20 @@ class CommandesController < ApplicationController
     render partial: "commande", locals: { commande: @commande }
   end
 
-  def create_from_utilisation
-    @commande = current_user.commandes.create_from_utilisation(@utilisation)
+  def create_from
+    @utilisation = Utilisation.find(params[:id])
+    @commande = current_user.commandes.create_from(@utilisation)
+    @commandes = @utilisation.chantier.commandes.order(date_de_commande: :desc)
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.replace(
+          "commandes",
+          partial: "commandes",
+          locals: { commandes: @commandes }
+        )
+      end
+    end
+
   end
 
   # GET /commandes/1 or /commandes/1.json
