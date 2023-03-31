@@ -36,14 +36,16 @@ class CommandesController < ApplicationController
   def create_from
     @utilisation = Utilisation.find(params[:id])
     @commande = current_user.commandes.create_from(@utilisation)
+    @utilisation.checked = true
+    @utilisation.save
     @commandes = @utilisation.chantier.commandes.order(date_de_commande: :desc)
     respond_to do |format|
       format.turbo_stream do
-        render turbo_stream: turbo_stream.replace(
-          "commandes",
-          partial: "commandes",
-          locals: { commandes: @commandes }
-        )
+        render turbo_stream: [
+          turbo_stream.replace("commandes", partial: "commandes", locals: { commandes: @commandes }),
+          turbo_stream.replace(@utilisation, partial: @utilisation, locals: { utilisation: @utilisation }) 
+        ]
+        
       end
     end
 
