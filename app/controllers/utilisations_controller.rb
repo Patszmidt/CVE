@@ -39,6 +39,29 @@ class UtilisationsController < ApplicationController
     end
   end
 
+  def trier
+    @utilisations = Utilisation.all.order(ressource_id: :asc)
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: [
+          turbo_stream.replace("utilisations", partial: "utilisations", locals: { utilisations: @utilisations }) 
+        ]
+      end
+    end
+  end
+
+  def trier_par_ressources
+    chantier = Chantier.find(params[:id])
+    @utilisations = chantier.utilisations.all.order(ressource_id: :asc)
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: [
+          turbo_stream.replace("utilisations", partial: "utilisations", locals: { utilisations: @utilisations }) 
+        ]
+      end
+    end
+  end
+
   # GET /utilisations/1 or /utilisations/1.json
   def show
   end

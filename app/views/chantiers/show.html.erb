@@ -4,9 +4,14 @@
 	</tr>
 	<tr><td><%= link_to "Modifier ce chantier", edit_chantier_path(@chantier) %></td></tr>
 </table>
+
 <h2>Utilisations sur ce chantier</h2>
 
-<%= render "utilisations/utilisations", utilisations: @chantier.utilisations.order(created_at: :desc) %>
+<%= form_with(url: trier_par_ressources_utilisations_path(@chantier), method: :post ) do |form| %>
+	<%= form.submit "Trier par ressources" %>
+<% end %>
+
+<%= render "utilisations/utilisations", utilisations: @utilisations %>
 
 <h2>Commandes sur ce chantier</h2>
 
