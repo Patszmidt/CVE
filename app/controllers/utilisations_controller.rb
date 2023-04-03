@@ -17,9 +17,9 @@ class UtilisationsController < ApplicationController
     end
 
     if params[:tri] == "ressource"
-      @utilisations = @utilisations.order(ressource_id: :asc)
+      @utilisations = @utilisations.order(ressource_id: :asc, chantier_id: :asc)
     elsif params[:tri] == "chantier"
-      @utilisations = @utilisations.order(chantier_id: :asc)
+      @utilisations = @utilisations.order(chantier_id: :asc, ressource_id: :asc)
     elsif params[:tri] == "date de création"
       @utilisations = @utilisations.order(created_at: :desc)
     else params[:tri] == "date d'utilisation"
