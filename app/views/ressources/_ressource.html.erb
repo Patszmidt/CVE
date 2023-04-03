@@ -1,7 +1,9 @@
-<div class="table-row" id="<%= dom_id ressource %>">
-    <div class="table-cell"><%= ressource.matiere.nom %></div>
-    <div class="table-cell"><%= ressource.epaisseur %>mm</div>
-    <div class="table-cell"><%= ressource.dimension %></div>
-    <div class="table-cell"><%= ressource.couleur %></div>
-    <div class="table-cell"><%= ressource.qualite %></div>
+<tr id="<%= dom_id ressource %>">
+    <td><%= ressource.matiere.nom %></td>
+    <td><%= ressource.epaisseur %>mm</td>
+    <td><%= ressource.dimension %></td>
+    <td><%= ressource.couleur %></td>
+    <td><%= ressource.qualite %></td>
+    <td><%= link_to "Détails de la ressource", ressource %></td>
+</tr>
     

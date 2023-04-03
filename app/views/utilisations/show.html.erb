@@ -1,10 +1,7 @@
-<p style="color: green"><%= notice %></p>
-
-<div class="table" id="utilisation">
+<table id="utilisation"   class="styled-table">
 	<%= render @utilisation %>
-	<div class="table-cell"><%= link_to "Modifier cette utilisation", edit_utilisation_path(@utilisation) %></div>
-	</div>
-</div>
+	<tr><td><%= link_to "Modifier cette utilisation", edit_utilisation_path(@utilisation) %></td></tr>
+</table>
 <p>
 	<%= link_to "Liste des utilisations", utilisations_path %>
 </p>
