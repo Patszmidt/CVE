@@ -1,28 +1,26 @@
-<div>
-<%= turbo_frame_tag utilisation, class: "table-row" do %>
-    <div class="<%= utilisation.status %>">
-    
-        <div class="table-cell"><%= utilisation.date.strftime("%d/%m/%Y") %></div>
-        <div class="table-cell"><%= utilisation.quantite %></div>
-        <div class="table-cell"><%= utilisation.ressource.nom_complet %></div>
-        <div class="table-cell"><%= utilisation.machine.nom %></div>
-        <div class="table-cell"><%= link_to utilisation.chantier.nom_complet, utilisation.chantier, data: { turbo: false } %></div>
+<tr id="<%= dom_id utilisation %>" class="<%= utilisation.status %>">
 
-        <div class="table-cell">
-            <% unless utilisation.checked %>
-                <%= link_to "Traiter", traiter_utilisation_path(utilisation) %>
-            <% else %>
-                Traité
-            <% end %>   
-        </div> 
+    <td><%= utilisation.date.strftime("%d/%m/%Y") %></td>
+    <td><%= utilisation.quantite %></td>
+    <td><%= utilisation.ressource.nom_complet %></td>
+    <td><%= utilisation.machine.nom %></td>
+    <td><%= link_to utilisation.chantier.nom_complet, utilisation.chantier, data: { turbo: false } %></td>
 
-        <div class="table-cell">
-            <%= form_with(url: create_commande_from_path(utilisation), method: :post, data: { turbo_frame: "commandes" }) do |form| %>
-                <%= form.submit "Commander" %>
+    <td>
+        <% unless utilisation.checked %>
+            <%= form_with(url: traiter_utilisation_path(utilisation), method: :post ) do |form| %>
+                <%= form.submit "Traiter" %>
             <% end %>
-        </div>
-        <div class="table-cell"><%= link_to "Modifier", edit_utilisation_path(utilisation), data: { turbo: false } %></div>
-   
-    </div>
- <% end %>
-</div>
+        <% else %>
+            Traité
+        <% end %>   
+    </td> 
+
+    <td>
+        <%= form_with(url: create_commande_from_path(utilisation), method: :post, data: { turbo_frame: "commandes" }) do |form| %>
+            <%= form.submit "Commander" %>
+        <% end %>
+    </td>
+    <td><%= link_to "Modifier", edit_utilisation_path(utilisation), data: { turbo: false } %></td>
+
+</tr>

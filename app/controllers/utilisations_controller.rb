@@ -29,7 +29,14 @@ class UtilisationsController < ApplicationController
   def traiter
     @utilisation.toggle(:checked)
     @utilisation.save
-    render partial: "utilisation", locals: { utilisation: @utilisation }
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: [
+          turbo_stream.replace(@utilisation, partial: @utilisation, locals: { utilisation: @utilisation }) 
+        ]
+        
+      end
+    end
   end
 
   # GET /utilisations/1 or /utilisations/1.json

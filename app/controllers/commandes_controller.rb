@@ -30,7 +30,14 @@ class CommandesController < ApplicationController
     @commande.toggle(:livre)
     @commande.date_de_livraison = Date.today
     @commande.save
-    render partial: "commande", locals: { commande: @commande }
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: [
+          turbo_stream.replace(@commande, partial: @commande, locals: { commande: @commande }) 
+        ]
+        
+      end
+    end
   end
 
   def create_from

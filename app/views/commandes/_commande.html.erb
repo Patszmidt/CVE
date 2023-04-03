@@ -1,24 +1,21 @@
-<div>
-<%= turbo_frame_tag commande, class: "table-row" do %>
-    <div class="<%= commande.status %>">
-    
-        <div class="table-cell"><%= commande.date_de_commande.strftime("%d/%m/%Y") %></div>
-        <div class="table-cell"><%= commande.quantite %></div>
-        <div class="table-cell"><%= commande.ressource.nom_complet %></div>
-        <div class="table-cell"><%= link_to commande.chantier.nom_complet, commande.chantier, data: { turbo: false } %></div>
-        <div class="table-cell"><%= commande.commentaire %></div>
+<tr id="<%= dom_id commande %>" class="<%= commande.status %>">
 
-        <div class="table-cell">
-            <% unless commande.livre %>
-                <%= link_to "livrer", livrer_commande_path(commande) %>
-            <% else %>
-                Livré
-            <% end %>    
-        </div>
+    <td><%= commande.date_de_commande.strftime("%d/%m/%Y") %></td>
+    <td><%= commande.quantite %></td>
+    <td><%= commande.ressource.nom_complet %></td>
+    <td><%= link_to commande.chantier.nom_complet, commande.chantier, data: { turbo: false } %></td>
+    <td><%= commande.commentaire %></td>
 
-        <div class="table-cell"><%= link_to "Modifier", edit_commande_path(commande), data: { turbo: false } %></div>
-   
-    </div>
- <% end %>
-</div>
+    <td>
+        <% unless commande.livre %>
+            <%= form_with(url: livrer_commande_path(commande), method: :post ) do |form| %>
+                <%= form.submit "livrer" %>
+            <% end %>
+        <% else %>
+            Livré
+        <% end %>    
+    </td>
 
+    <td><%= link_to "Modifier", edit_commande_path(commande), data: { turbo: false } %></td>
+
+</tr>
