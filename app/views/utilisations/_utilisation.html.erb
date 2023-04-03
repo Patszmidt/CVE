@@ -6,8 +6,16 @@
         <div class="table-cell"><%= utilisation.quantite %></div>
         <div class="table-cell"><%= utilisation.ressource.nom_complet %></div>
         <div class="table-cell"><%= utilisation.machine.nom %></div>
-        <div class="table-cell"><%= utilisation.chantier.nom_complet %></div>
-        <div class="table-cell"><%= link_to "Traiter", traiter_utilisation_path(utilisation) %></div>
+        <div class="table-cell"><%= link_to utilisation.chantier.nom_complet, utilisation.chantier, data: { turbo: false } %></div>
+
+        <div class="table-cell">
+            <% unless utilisation.checked %>
+                <%= link_to "Traiter", traiter_utilisation_path(utilisation) %>
+            <% else %>
+                Traité
+            <% end %>   
+        </div> 
+
         <div class="table-cell">
             <%= form_with(url: create_commande_from_path(utilisation), method: :post, data: { turbo_frame: "commandes" }) do |form| %>
                 <%= form.submit "Commander" %>

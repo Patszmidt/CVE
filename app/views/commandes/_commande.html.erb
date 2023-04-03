@@ -5,15 +5,15 @@
         <div class="table-cell"><%= commande.date_de_commande.strftime("%d/%m/%Y") %></div>
         <div class="table-cell"><%= commande.quantite %></div>
         <div class="table-cell"><%= commande.ressource.nom_complet %></div>
-        <div class="table-cell"><%= commande.chantier.nom_complet %></div>
+        <div class="table-cell"><%= link_to commande.chantier.nom_complet, commande.chantier, data: { turbo: false } %></div>
         <div class="table-cell"><%= commande.commentaire %></div>
 
         <div class="table-cell">
-        <% unless commande.livre %>
-            <%= link_to "livrer", livrer_commande_path(commande) %>
-        <% else %>
-            Livré
-        <% end %>    
+            <% unless commande.livre %>
+                <%= link_to "livrer", livrer_commande_path(commande) %>
+            <% else %>
+                Livré
+            <% end %>    
         </div>
 
         <div class="table-cell"><%= link_to "Modifier", edit_commande_path(commande), data: { turbo: false } %></div>

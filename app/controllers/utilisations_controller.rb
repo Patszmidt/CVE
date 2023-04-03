@@ -51,7 +51,7 @@ class UtilisationsController < ApplicationController
 
     respond_to do |format|
       if @utilisation.save
-        format.html { redirect_to utilisations_url, notice: "Utilisation was successfully created." }
+        format.html { redirect_to chantier_url(@utilisation.chantier), notice: "Utilisation was successfully created." }
         format.json { render :show, status: :created, location: @utilisation }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -64,7 +64,7 @@ class UtilisationsController < ApplicationController
   def update
     respond_to do |format|
       if @utilisation.update(utilisation_params)
-        format.html { redirect_to utilisations_url, notice: "Utilisation was successfully updated." }
+        format.html { redirect_to chantier_url(@utilisation.chantier), notice: "Utilisation was successfully updated." }
         format.json { render :show, status: :ok, location: @utilisation }
       else
         format.html { render :edit, status: :unprocessable_entity }

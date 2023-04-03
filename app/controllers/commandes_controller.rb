@@ -70,7 +70,7 @@ class CommandesController < ApplicationController
 
     respond_to do |format|
       if @commande.save
-        format.html { redirect_to commande_url(@commande), notice: "Commande was successfully created." }
+        format.html { redirect_to chantier_url(@commande.chantier), notice: "Commande was successfully created." }
         format.json { render :show, status: :created, location: @commande }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -83,7 +83,7 @@ class CommandesController < ApplicationController
   def update
     respond_to do |format|
       if @commande.update(commande_params)
-        format.html { redirect_to commande_url(@commande), notice: "Commande was successfully updated." }
+        format.html { redirect_to chantier_url(@commande.chantier), notice: "Commande was successfully updated." }
         format.json { render :show, status: :ok, location: @commande }
       else
         format.html { render :edit, status: :unprocessable_entity }
