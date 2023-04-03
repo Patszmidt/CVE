@@ -19,7 +19,7 @@
         <%= form.select :tri, ["date d'utilisation","ressource","chantier","date de creation"], selected: if params[:tri].present? then params[:tri] end %>
     </div>
     <div>
-        <%= form.submit 'Afficher' %>
+        <%= form.submit 'Afficher' %> | <%= form.submit 'Imprimer' %>
     </div>
     <% end %>
 </div>

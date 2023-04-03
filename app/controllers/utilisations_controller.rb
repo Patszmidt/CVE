@@ -27,9 +27,18 @@ class UtilisationsController < ApplicationController
     end
     
     if turbo_frame_request?
-      render partial: "utilisations", locals: { utilisations: @utilisations }
+      if params[:commit] == "Afficher"
+        render partial: "utilisations", locals: { utilisations: @utilisations }
+      else
+        render :index, layout: "print"
+      end
     else
+      if params[:commit] == "Afficher"
       render :index
+     
+      else
+        render :index, layout: "print"
+      end
     end
     
   end

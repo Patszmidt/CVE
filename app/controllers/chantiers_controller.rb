@@ -10,6 +10,7 @@ class ChantiersController < ApplicationController
   # GET /chantiers/1 or /chantiers/1.json
   def show
     @utilisations = @chantier.utilisations.order(created_at: :desc)
+    
   end
 
   # GET /chantiers/new
