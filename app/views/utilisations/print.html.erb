@@ -28,33 +28,24 @@
 <h1>Utilisations</h1>
 
 
-  <table id="utilisations" class="styled-table">
-    <th>Date</th>
-    <th>Quantité</th>
-    <th>Ressource</th>
-    <th>Machine</th>
-    <th>Chantier</th>
-    <th>Status</th>
+<table id="utilisations" class="styled-table">
+    <tr>
+        <th>Date</th>
+        <th>Quantité</th>
+        <th>Ressource</th>
+        <th>Chantier</th>
+    </tr>
+
     <% @utilisations.each do |utilisation| %>
         <tr id="<%= dom_id utilisation %>" class="<%= utilisation.status %>">
 
             <td><%= utilisation.date.strftime("%d/%m/%Y") %></td>
             <td><%= utilisation.quantite %></td>
             <td><%= utilisation.ressource.nom_complet %></td>
-            <td><%= utilisation.machine.nom %></td>
             <td><%= link_to utilisation.chantier.nom_complet, utilisation.chantier, data: { turbo: false } %></td>
 
-            <td>
-                <% unless utilisation.checked %>
-                    <%= form_with(url: traiter_utilisation_path(utilisation), method: :post ) do |form| %>
-                        <%= form.submit "Traiter" %>
-                    <% end %>
-                <% else %>
-                    Traité
-                <% end %>   
-            </td> 
         </tr>
     <% end %>
 
-  </table>
+</table>
 
