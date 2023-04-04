@@ -21,6 +21,16 @@
     <%= form.collection_select(:client_id, @clients, :id, :nom, {:prompt => true}) %>
   </div>
 
+   <div>
+    <%= form.label :date_de_livraison, style: "display: block" %>
+    <%= form.date_field :date_de_livraison %>
+  </div>
+
+  <div>
+    <%= form.label :livre, "Livré ?", style: "display: block" %>
+    <%= form.check_box :livre %>
+  </div>
+
   <div>
     <%= form.submit %>
   </div>

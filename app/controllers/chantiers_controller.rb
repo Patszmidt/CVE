@@ -4,7 +4,7 @@ class ChantiersController < ApplicationController
 
   # GET /chantiers or /chantiers.json
   def index
-    @chantiers = Chantier.all.order(created_at: :desc)
+    @chantiers = Chantier.all.order(date_de_livraison: :desc)
   end
 
   # GET /chantiers/1 or /chantiers/1.json
@@ -72,6 +72,6 @@ class ChantiersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def chantier_params
-      params.require(:chantier).permit(:nom, :client_id)
+      params.require(:chantier).permit(:nom, :client_id, :date_de_livraison, :livre)
     end
 end
