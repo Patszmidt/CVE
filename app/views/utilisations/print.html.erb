@@ -7,7 +7,7 @@
         <%= form.date_field :start_date, value: if params[:start_date].present? then params[:start_date] end %>
     </div>
     <div>
-        <%= form.label :start_date, "jusqu'à"  %>
+        <%= form.label :end_date, "jusqu'à"  %>
         <%= form.date_field :end_date, value: if params[:end_date].present? then params[:end_date] end %>
     </div>
     <div>

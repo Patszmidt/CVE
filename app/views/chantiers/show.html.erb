@@ -7,8 +7,26 @@
 
 <h2>Utilisations sur ce chantier</h2>
 
-<%= form_with(url: trier_par_ressources_utilisations_path(@chantier), method: :post ) do |form| %>
-	<%= form.submit "Trier par ressources" %>
+<%= form_with(url: trier_par_ressources_utilisations_path(@chantier), method: :post) do |form| %>
+    <div>
+        <%= form.label :start_date, "Depuis"  %>
+        <%= form.date_field :start_date, value: if params[:start_date].present? then params[:start_date] end %>
+    </div>
+    <div>
+        <%= form.label :end_date, "jusqu'à"  %>
+        <%= form.date_field :end_date, value: if params[:end_date].present? then params[:end_date] end %>
+    </div>
+    <div>
+        <%= form.label :tout, "Afficher toutes les utilisations"  %>
+        <%= form.check_box :tout, checked: params[:tout] == "1"  %>
+    </div>
+    <div>
+        <%= form.label :tri, "Trier par"  %>
+        <%= form.select :tri, ["date d'utilisation","ressource","date de creation"], selected: if params[:tri].present? then params[:tri] end %>
+    </div>
+    <div>
+        <%= form.submit 'Afficher' %> <!-- | <%= form.submit 'Imprimer' %> -->
+    </div>
 <% end %>
 
 <%= render "utilisations/utilisations", utilisations: @utilisations %>

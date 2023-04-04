@@ -4,27 +4,8 @@ class UtilisationsController < ApplicationController
 
   # GET /utilisations or /utilisations.json
   def index
-    if params[:tout] && params[:tout] == "1"
-      @utilisations = Utilisation.all
-    else
-      @utilisations = Utilisation.where(checked: false)
-    end
-
-    if params[:start_date].present? && params[:end_date].present?
-      @start_date = Date.parse(params[:start_date])
-      @end_date = Date.parse(params[:end_date])
-      @utilisations = @utilisations.where(date: @start_date..@end_date)
-    end
-
-    if params[:tri] == "ressource"
-      @utilisations = @utilisations.order(ressource_id: :asc, chantier_id: :asc)
-    elsif params[:tri] == "chantier"
-      @utilisations = @utilisations.order(chantier_id: :asc, ressource_id: :asc)
-    elsif params[:tri] == "date de création"
-      @utilisations = @utilisations.order(created_at: :desc)
-    else params[:tri] == "date d'utilisation"
-      @utilisations = @utilisations.order(date: :desc)
-    end
+    utilisations = Utilisation.all
+    trier_les_utilisations(utilisations, params)
     
     if turbo_frame_request?
       if params[:commit] == "Imprimer"
@@ -58,8 +39,10 @@ class UtilisationsController < ApplicationController
     end
   end
 
-  def trier
-    @utilisations = Utilisation.all.order(ressource_id: :asc)
+  def trier_par_ressources
+    chantier = Chantier.find(params[:id])
+    utilisations = chantier.utilisations.all
+    trier_les_utilisations(utilisations, params)
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: [
@@ -69,16 +52,29 @@ class UtilisationsController < ApplicationController
     end
   end
 
-  def trier_par_ressources
-    chantier = Chantier.find(params[:id])
-    @utilisations = chantier.utilisations.all.order(ressource_id: :asc)
-    respond_to do |format|
-      format.turbo_stream do
-        render turbo_stream: [
-          turbo_stream.replace("utilisations", partial: "utilisations", locals: { utilisations: @utilisations }) 
-        ]
-      end
+  def trier_les_utilisations(utilisations, params)
+    if params[:tout] && params[:tout] == "1"
+      utilisations = utilisations
+    else
+      utilisations = utilisations.where(checked: false)
     end
+
+    if params[:start_date].present? && params[:end_date].present?
+      start_date = Date.parse(params[:start_date])
+      end_date = Date.parse(params[:end_date])
+      utilisations = utilisations.where(date: start_date..end_date)
+    end
+
+    if params[:tri] == "ressource"
+      utilisations = utilisations.order(ressource_id: :asc, chantier_id: :asc)
+    elsif params[:tri] == "chantier"
+      utilisations = utilisations.order(chantier_id: :asc, ressource_id: :asc)
+    elsif params[:tri] == "date de création"
+      utilisations = utilisations.order(created_at: :desc)
+    else params[:tri] == "date d'utilisation"
+      utilisations = utilisations.order(date: :desc)
+    end
+    @utilisations = utilisations
   end
 
   # GET /utilisations/1 or /utilisations/1.json
