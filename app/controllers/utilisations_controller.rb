@@ -32,7 +32,7 @@ class UtilisationsController < ApplicationController
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: [
-          turbo_stream.replace(@utilisation, partial: @utilisation, locals: { utilisation: @utilisation }) 
+          turbo_stream.replace(@utilisation, partial: @utilisation, locals: { utilisation: @utilisation })
         ]
         
       end

@@ -5,6 +5,14 @@ class Ressource < ApplicationRecord
   
   def nom_complet
     return "#{self.matiere.nom} #{self.epaisseur}mm #{self.couleur} #{self.qualite}"
-  end  
+  end
+  
+  def quantite_utilisee
+    qte = 0
+    self.utilisations.each do |u|
+      qte += u.quantite
+    end
+    return qte
+  end
   
 end

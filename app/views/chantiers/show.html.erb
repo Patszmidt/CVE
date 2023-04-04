@@ -35,6 +35,9 @@
 
 <%= render "commandes/commandes", commandes: @chantier.commandes.order(created_at: :desc) %>
 
+<h2>Ressources utilisées</h2>
+
+<%= render "chantiers/ressources", chantier: @chantier %>
 
 <p>
 	<%= link_to "Liste des chantiers", chantiers_path %>

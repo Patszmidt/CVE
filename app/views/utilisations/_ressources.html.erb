@@ -1,0 +1,20 @@
+<table id="ressources"  class="styled-table">
+    <tr>
+        <th>Ressource</th>
+        <th>Quantité utilisée sur cette recherche</th>
+    </tr>
+    <% ressources = [] %>
+    <% utilisations.each do |u| %>
+        <% ressources << u.ressource %>
+    <% end %>
+    <% ressources.uniq.each do |ressource| %>
+        <tr>
+            <td><%= ressource.nom_complet %></td>
+            <% qte = 0 %>
+            <% utilisations.where(ressource: ressource).each do |u| %>
+                <% qte += u.quantite %> 
+            <% end %>
+            <td><%= qte %></td>
+        </tr>
+    <% end %>
+</table>

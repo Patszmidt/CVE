@@ -50,6 +50,7 @@ class CommandesController < ApplicationController
       format.turbo_stream do
         render turbo_stream: [
           turbo_stream.replace("commandes", partial: "commandes", locals: { commandes: @commandes }),
+          turbo_stream.replace("ressources_chantier", partial: "chantiers/ressources", locals: { chantier: @utilisation.chantier }),
           turbo_stream.replace(@utilisation, partial: @utilisation, locals: { utilisation: @utilisation }) 
         ]
         

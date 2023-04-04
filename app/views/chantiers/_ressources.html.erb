@@ -1,0 +1,14 @@
+<table id="ressources_chantier"  class="styled-table">
+    <tr>
+        <th>Ressource</th>
+        <th>Quantité utilisée sur ce chantier</th>
+        <th>Quantité commandée sur ce chantier</th>
+    </tr>
+    <% chantier.ressources.uniq.each do |ressource| %>
+        <tr>
+            <td><%= ressource.nom_complet %></td>
+            <td><%= chantier.quantite_utilisee(ressource) %></td>
+            <td><%= chantier.quantite_commandee(ressource) %></td>
+        </tr>
+    <% end %>
+</table>
