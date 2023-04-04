@@ -1,0 +1,60 @@
+<div>
+    <h2>Afficher les utilisations</h2>
+    
+    <%= form_with(url: utilisations_path, method: :get, data: {turbo_frame: "utilisations", turbo_action: "advance"}) do |form| %>
+    <div>
+        <%= form.label :start_date, "Depuis"  %>
+        <%= form.date_field :start_date, value: if params[:start_date].present? then params[:start_date] end %>
+    </div>
+    <div>
+        <%= form.label :start_date, "jusqu'à"  %>
+        <%= form.date_field :end_date, value: if params[:end_date].present? then params[:end_date] end %>
+    </div>
+    <div>
+        <%= form.label :tout, "Afficher toutes les utilisations"  %>
+        <%= form.check_box :tout, checked: params[:tout] == "1"  %>
+    </div>
+    <div>
+        <%= form.label :tri, "Trier par"  %>
+        <%= form.select :tri, ["date d'utilisation","ressource","chantier","date de creation"], selected: if params[:tri].present? then params[:tri] end %>
+    </div>
+    <div>
+        <%= form.submit 'Afficher' %> | <%= form.submit 'Imprimer' %>
+    </div>
+    <% end %>
+</div>
+
+
+<h1>Utilisations</h1>
+
+
+  <table id="utilisations" class="styled-table">
+    <th>Date</th>
+    <th>Quantité</th>
+    <th>Ressource</th>
+    <th>Machine</th>
+    <th>Chantier</th>
+    <th>Status</th>
+    <% @utilisations.each do |utilisation| %>
+        <tr id="<%= dom_id utilisation %>" class="<%= utilisation.status %>">
+
+            <td><%= utilisation.date.strftime("%d/%m/%Y") %></td>
+            <td><%= utilisation.quantite %></td>
+            <td><%= utilisation.ressource.nom_complet %></td>
+            <td><%= utilisation.machine.nom %></td>
+            <td><%= link_to utilisation.chantier.nom_complet, utilisation.chantier, data: { turbo: false } %></td>
+
+            <td>
+                <% unless utilisation.checked %>
+                    <%= form_with(url: traiter_utilisation_path(utilisation), method: :post ) do |form| %>
+                        <%= form.submit "Traiter" %>
+                    <% end %>
+                <% else %>
+                    Traité
+                <% end %>   
+            </td> 
+        </tr>
+    <% end %>
+
+  </table>
+

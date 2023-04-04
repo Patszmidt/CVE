@@ -28,14 +28,14 @@ class UtilisationsController < ApplicationController
     
     if turbo_frame_request?
       if params[:commit] == "Imprimer"
-        render :index, layout: "print"
+        render :print, layout: "print"
          else
           render partial: "utilisations", locals: { utilisations: @utilisations }
      
       end
     else
       if params[:commit] == "Imprimer"
-        render :index, layout: "print"
+        render :print, layout: "print"
      
       else
         render :index
