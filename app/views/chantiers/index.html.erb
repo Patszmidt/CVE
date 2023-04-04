@@ -5,10 +5,12 @@
 </p>
 
 <table id="chantiers"  class="styled-table">
-  <% @chantiers.each do |chantier| %>
-  <tr id="<%= dom_id chantier %>">
-    <%= render chantier %>
+  <tr>
+    <th>Chantier</th>
+    <th>Commandes à passer?</th>
   </tr>
+  <% @chantiers.each do |chantier| %>
+    <%= render chantier %>
   <% end %>
 </table>
 

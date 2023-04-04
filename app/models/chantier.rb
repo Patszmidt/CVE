@@ -25,5 +25,22 @@ class Chantier < ApplicationRecord
     end
     return qte
   end
+
+  def equilibre?
+    scale = 0
+    self.ressources.uniq.each do |ressource|
+      balance = self.quantite_commandee(ressource)-self.quantite_utilisee(ressource)
+      if balance >= 0
+        scale += 0
+      else
+        scale +=1
+      end
+    end
+    if scale > 0
+      return false
+    else
+      return true
+    end
+  end
   
 end

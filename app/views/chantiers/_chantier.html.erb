@@ -1,2 +1,10 @@
-
+<tr id="<%= dom_id chantier %>">
     <td><%= link_to chantier.nom_complet, chantier  %></td>
+    <td>
+        <% if chantier.equilibre? %>
+            Non
+        <% else %>
+            Oui
+        <% end %>
+    </td>
+</tr>
