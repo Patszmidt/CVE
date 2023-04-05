@@ -1,7 +1,8 @@
-<div id="<%= dom_id fournisseur %>">
-  <p>
-    <strong>Nom:</strong>
-    <%= link_to fournisseur.nom, fournisseur %>
-  </p>
+<tr id="<%= dom_id fournisseur %>">
+  <td>
+    <%= fournisseur.nom %>
+  </td>
 
-</div>
+  <td><%= link_to "Modifier", edit_fournisseur_path(fournisseur), data: { turbo: false } %></td>
+
+</tr>

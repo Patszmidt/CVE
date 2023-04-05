@@ -1,6 +1,7 @@
-<%= render @fournisseur %>
+<table id="fournisseur"   class="styled-table">
+  <%= render @fournisseur %>
+</table>
 
 <div>
-  <%= link_to "Modifier le fournisseur", edit_fournisseur_path(@fournisseur) %> |
   <%= link_to "Liste des fournisseurs", fournisseurs_path %>
 </div>
