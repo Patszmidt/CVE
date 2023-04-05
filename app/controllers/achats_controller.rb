@@ -13,7 +13,7 @@ class AchatsController < ApplicationController
     if params[:start_date].present?
       @start_date = Date.parse(params[:start_date])
       @end_date = Date.parse(params[:end_date])
-      @achats = Achats.joins(:commande).where(date: @start_date..@end_date).joins(:commande).order(date: :desc)
+      @achats = Achat.joins(:commande).where(date: @start_date..@end_date).joins(:commande).order(date: :desc)
     else
       @achats = achats
     end
