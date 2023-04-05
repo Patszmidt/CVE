@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   get 'users/index'
   get 'users/edit'
-  resources :commandes
+  resources :achats
   devise_for :users
   
   resources :utilisations do
@@ -12,8 +12,8 @@ Rails.application.routes.draw do
   end
 
   post '/utilisations/:id/traiter', to: 'utilisations#traiter', as: 'traiter_utilisation'
-  post '/commandes/:id/livrer', to: 'commandes#livrer', as: 'livrer_commande'
-  post '/commandes/:id/create_from', to: 'commandes#create_from', as: 'create_commande_from'
+  post '/achats/:id/livrer', to: 'achats#livrer', as: 'livrer_achat'
+  post '/achats/:id/create_from', to: 'achats#create_from', as: 'create_achat_from'
   post "/chantiers/:id/trier_par_ressources", to: 'utilisations#trier_par_ressources', as: 'trier_par_ressources_utilisations'
 
   resources :ressources

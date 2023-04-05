@@ -1,4 +1,4 @@
-class Commande < ApplicationRecord
+class Achat < ApplicationRecord
   belongs_to :user
   belongs_to :chantier
   belongs_to :ressource
@@ -27,11 +27,11 @@ class Commande < ApplicationRecord
   end
 
   def self.create_from(utilisation)
-    c = Commande.new
+    c = Achat.new
     c.chantier = utilisation.chantier
     c.ressource = utilisation.ressource
     c.quantite = utilisation.quantite
-    c.date_de_commande = Date.today
+    c.date_de_achat = Date.today
     c.livre = false
     c.save
   end

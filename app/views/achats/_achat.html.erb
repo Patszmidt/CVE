@@ -1,0 +1,21 @@
+<tr id="<%= dom_id achat %>" class="<%= achat.status %>">
+
+    <td><%= achat.date_de_achat.strftime("%d/%m/%Y") %></td>
+    <td><%= achat.quantite %></td>
+    <td><%= achat.ressource.nom_complet %></td>
+    <td><%= link_to achat.chantier.nom_complet, achat.chantier, data: { turbo: false } %></td>
+    <td><%= achat.commentaire %></td>
+
+    <td>
+        <% unless achat.livre %>
+            <%= form_with(url: livrer_achat_path(achat), method: :post ) do |form| %>
+                <%= form.submit "livrer" %>
+            <% end %>
+        <% else %>
+            Livré
+        <% end %>    
+    </td>
+
+    <td><%= link_to "Modifier", edit_achat_path(achat), data: { turbo: false } %></td>
+
+</tr>

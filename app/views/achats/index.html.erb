@@ -1,7 +1,7 @@
 <div>
-    <h2>Afficher les commandes</h2>
+    <h2>Afficher les achats</h2>
     
-    <%= form_with(url: commandes_path, method: :get, data: {turbo_frame: "commandes", turbo_action: "advance"}) do |form| %>
+    <%= form_with(url: achats_path, method: :get, data: {turbo_frame: "achats", turbo_action: "advance"}) do |form| %>
     <div>
         <%= form.label :start_date, "Depuis"  %>
         <%= form.date_field :start_date %>
@@ -11,7 +11,7 @@
         <%= form.date_field :end_date %>
     </div>
     <div>
-        <%= form.label :tout, "Afficher toutes les commandes"  %>
+        <%= form.label :tout, "Afficher toutes les achats"  %>
         <%= form.check_box :tout %>
     </div>
     <div>
@@ -21,6 +21,6 @@
 </div>
 
 
-<h1>commandes</h1>
+<h1>achats</h1>
 
-<%= render "commandes", commandes: @commandes %>
+<%= render "achats", achats: @achats %>

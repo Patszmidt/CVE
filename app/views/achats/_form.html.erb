@@ -1,10 +1,10 @@
-<%= form_with(model: commande) do |form| %>
-  <% if commande.errors.any? %>
+<%= form_with(model: achat) do |form| %>
+  <% if achat.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(commande.errors.count, "error") %> prohibited this commande from being saved:</h2>
+      <h2><%= pluralize(achat.errors.count, "error") %> prohibited this achat from being saved:</h2>
 
       <ul>
-        <% commande.errors.each do |error| %>
+        <% achat.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
@@ -33,12 +33,12 @@
   </div>
 
   <div>
-    <%= form.label :date_de_commande, style: "display: block" %>
-    <%= form.date_field :date_de_commande, value: if commande.date_de_commande.present? then commande.date_de_commande else Date.today end %>
+    <%= form.label :date_de_achat, style: "display: block" %>
+    <%= form.date_field :date_de_achat, value: if achat.date_de_achat.present? then achat.date_de_achat else Date.today end %>
   </div>
 
   <div>
-    <%= form.label "Numéro de commande", style: "display: block" %>
+    <%= form.label "Numéro de achat", style: "display: block" %>
     <%= form.text_field :commentaire %>
   </div>
 

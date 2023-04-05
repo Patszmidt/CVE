@@ -1,7 +1,7 @@
 <table id="chantier"  class="styled-table">
     <tr>
         <th>Chantier</th>
-        <th>Commandes à passer?</th>
+        <th>Achats à passer?</th>
     </tr>
 	<%= render @chantier %>
 	<tr><td><%= link_to "Modifier ce chantier", edit_chantier_path(@chantier) %></td></tr>
@@ -33,9 +33,9 @@
 
 <%= render "utilisations/utilisations", utilisations: @utilisations %>
 
-<h2>Commandes sur ce chantier</h2>
+<h2>Achats sur ce chantier</h2>
 
-<%= render "commandes/commandes", commandes: @chantier.commandes.order(created_at: :desc) %>
+<%= render "achats/achats", achats: @chantier.achats.order(created_at: :desc) %>
 
 <h2>Ressources utilisées</h2>
 

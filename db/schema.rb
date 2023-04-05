@@ -10,9 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_04_062753) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_05_091009) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "achats", force: :cascade do |t|
+    t.bigint "chantier_id", null: false
+    t.bigint "ressource_id", null: false
+    t.date "date_de_achat"
+    t.date "date_de_livraison"
+    t.boolean "livre"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "quantite"
+    t.string "commentaire"
+    t.bigint "user_id"
+    t.index ["chantier_id"], name: "index_achats_on_chantier_id"
+    t.index ["ressource_id"], name: "index_achats_on_ressource_id"
+    t.index ["user_id"], name: "index_achats_on_user_id"
+  end
 
   create_table "chantiers", force: :cascade do |t|
     t.string "nom"
@@ -28,22 +44,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_04_062753) do
     t.string "nom"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "commandes", force: :cascade do |t|
-    t.bigint "chantier_id", null: false
-    t.bigint "ressource_id", null: false
-    t.date "date_de_commande"
-    t.date "date_de_livraison"
-    t.boolean "livre"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "quantite"
-    t.string "commentaire"
-    t.bigint "user_id"
-    t.index ["chantier_id"], name: "index_commandes_on_chantier_id"
-    t.index ["ressource_id"], name: "index_commandes_on_ressource_id"
-    t.index ["user_id"], name: "index_commandes_on_user_id"
   end
 
   create_table "machines", force: :cascade do |t|
@@ -106,10 +106,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_04_062753) do
     t.index ["user_id"], name: "index_utilisations_on_user_id"
   end
 
+  add_foreign_key "achats", "chantiers"
+  add_foreign_key "achats", "ressources"
+  add_foreign_key "achats", "users"
   add_foreign_key "chantiers", "clients"
-  add_foreign_key "commandes", "chantiers"
-  add_foreign_key "commandes", "ressources"
-  add_foreign_key "commandes", "users"
   add_foreign_key "ressources", "matieres"
   add_foreign_key "utilisations", "chantiers"
   add_foreign_key "utilisations", "machines"

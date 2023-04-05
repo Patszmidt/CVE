@@ -1,0 +1,11 @@
+<table id="achat"   class="styled-table">
+  <%= render @achat %>
+</table>
+
+
+<div>
+  <%= link_to "Edit this achat", edit_achat_path(@achat) %> |
+  <%= link_to "Back to achats", achats_path %>
+
+  <%= button_to "Destroy this achat", @achat, method: :delete %>
+</div>

@@ -3,7 +3,7 @@ class Chantier < ApplicationRecord
   belongs_to :client
   has_many :utilisations
   has_many :ressources, through: :utilisations
-  has_many :commandes
+  has_many :achats
   
    
   def nom_complet
@@ -18,9 +18,9 @@ class Chantier < ApplicationRecord
     return qte
   end
 
-  def quantite_commandee(ressource)
+  def quantite_achetee(ressource)
     qte = 0
-    self.commandes.where(ressource: ressource).each do |u|
+    self.achats.where(ressource: ressource).each do |u|
       qte += u.quantite
     end
     return qte
@@ -29,7 +29,7 @@ class Chantier < ApplicationRecord
   def equilibre?
     scale = 0
     self.ressources.uniq.each do |ressource|
-      balance = self.quantite_commandee(ressource)-self.quantite_utilisee(ressource)
+      balance = self.quantite_achetee(ressource)-self.quantite_utilisee(ressource)
       if balance >= 0
         scale += 0
       else

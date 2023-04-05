@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 import {get} from "@rails/request.js"
 
-// Connects to data-controller="commande"
+// Connects to data-controller="achat"
 export default class extends Controller {
 
 submit() {
