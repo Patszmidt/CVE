@@ -17,7 +17,7 @@ class CommandesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create commande" do
     assert_difference("Commande.count") do
-      post commandes_url, params: { commande: { chantier_id: @commande.chantier_id, date_de_commande: @commande.date_de_commande, date_de_livraison: @commande.date_de_livraison, livre: @commande.livre, ressource_id: @commande.ressource_id, utilisateur_id: @commande.utilisateur_id } }
+      post commandes_url, params: { commande: { date: @commande.date, fournisseur_id: @commande.fournisseur_id, livree: @commande.livree, numero_de_commande: @commande.numero_de_commande } }
     end
 
     assert_redirected_to commande_url(Commande.last)
@@ -34,7 +34,7 @@ class CommandesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update commande" do
-    patch commande_url(@commande), params: { commande: { chantier_id: @commande.chantier_id, date_de_commande: @commande.date_de_commande, date_de_livraison: @commande.date_de_livraison, livre: @commande.livre, ressource_id: @commande.ressource_id, utilisateur_id: @commande.utilisateur_id } }
+    patch commande_url(@commande), params: { commande: { date: @commande.date, fournisseur_id: @commande.fournisseur_id, livree: @commande.livree, numero_de_commande: @commande.numero_de_commande } }
     assert_redirected_to commande_url(@commande)
   end
 

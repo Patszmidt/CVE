@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :commandes
+  resources :fournisseurs
   get 'users/index'
   get 'users/edit'
   resources :achats

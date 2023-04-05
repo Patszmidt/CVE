@@ -14,12 +14,10 @@ class CommandesTest < ApplicationSystemTestCase
     visit commandes_url
     click_on "New commande"
 
-    fill_in "Chantier", with: @commande.chantier_id
-    fill_in "Date de commande", with: @commande.date_de_commande
-    fill_in "Date de livraison", with: @commande.date_de_livraison
-    check "Livre" if @commande.livre
-    fill_in "Ressource", with: @commande.ressource_id
-    fill_in "Utilisateur", with: @commande.utilisateur_id
+    fill_in "Date", with: @commande.date
+    fill_in "Fournisseur", with: @commande.fournisseur_id
+    check "Livree" if @commande.livree
+    fill_in "Numero de commande", with: @commande.numero_de_commande
     click_on "Create Commande"
 
     assert_text "Commande was successfully created"
@@ -30,12 +28,10 @@ class CommandesTest < ApplicationSystemTestCase
     visit commande_url(@commande)
     click_on "Edit this commande", match: :first
 
-    fill_in "Chantier", with: @commande.chantier_id
-    fill_in "Date de commande", with: @commande.date_de_commande
-    fill_in "Date de livraison", with: @commande.date_de_livraison
-    check "Livre" if @commande.livre
-    fill_in "Ressource", with: @commande.ressource_id
-    fill_in "Utilisateur", with: @commande.utilisateur_id
+    fill_in "Date", with: @commande.date
+    fill_in "Fournisseur", with: @commande.fournisseur_id
+    check "Livree" if @commande.livree
+    fill_in "Numero de commande", with: @commande.numero_de_commande
     click_on "Update Commande"
 
     assert_text "Commande was successfully updated"

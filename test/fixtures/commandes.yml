@@ -1,17 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  utilisateur: one
-  chantier: one
-  ressource: one
-  date_de_commande: 2023-03-30
-  date_de_livraison: 2023-03-30
-  livre: false
+  date: 2023-04-05
+  fournisseur: one
+  numero_de_commande: MyString
+  livree: false
 
 two:
-  utilisateur: two
-  chantier: two
-  ressource: two
-  date_de_commande: 2023-03-30
-  date_de_livraison: 2023-03-30
-  livre: false
+  date: 2023-04-05
+  fournisseur: two
+  numero_de_commande: MyString
+  livree: false
