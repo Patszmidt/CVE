@@ -33,13 +33,8 @@
   </div>
 
   <div>
-    <%= form.label :date_de_achat, style: "display: block" %>
-    <%= form.date_field :date_de_achat, value: if achat.date_de_achat.present? then achat.date_de_achat else Date.today end %>
-  </div>
-
-  <div>
-    <%= form.label "Numéro de achat", style: "display: block" %>
-    <%= form.text_field :commentaire %>
+    <%= form.label "Commande", style: "display: block" %>
+    <%= form.collection_select(:commande_id, Commande.all.order(date: :desc), :id, :ref_complete, { prompt: 'Choisir une commande' }) %>
   </div>
 
   <div>

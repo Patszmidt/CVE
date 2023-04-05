@@ -1,10 +1,10 @@
 <tr id="<%= dom_id achat %>" class="<%= achat.status %>">
 
-    <td><%= achat.date_de_achat.strftime("%d/%m/%Y") %></td>
+    <td><%= achat.commande.date.strftime("%d/%m/%Y") %></td>
     <td><%= achat.quantite %></td>
     <td><%= achat.ressource.nom_complet %></td>
     <td><%= link_to achat.chantier.nom_complet, achat.chantier, data: { turbo: false } %></td>
-    <td><%= achat.commentaire %></td>
+    <td><%= achat.commande.ref_complete %></td>
 
     <td>
         <% unless achat.livre %>

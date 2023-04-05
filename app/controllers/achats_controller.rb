@@ -5,15 +5,15 @@ class AchatsController < ApplicationController
   # GET /achats or /achats.json
   def index
     if params[:tout] && params[:tout] == "1"
-      achats = Achat.all.order(date_de_achat: :desc)
+      achats = Achat.all.joins(:commande).order(date: :desc)
     else
-      achats = Achat.where(livre: false).order(date_de_achat: :desc)
+      achats = Achat.where(livre: false).joins(:commande).order(date: :desc)
     end
 
     if params[:start_date].present?
       @start_date = Date.parse(params[:start_date])
       @end_date = Date.parse(params[:end_date])
-      @achats = Achats.where(date_de_achat: @start_date..@end_date).order(date_de_achat: :desc)
+      @achats = Achats.joins(:commande).where(date: @start_date..@end_date).joins(:commande).order(date: :desc)
     else
       @achats = achats
     end
@@ -42,10 +42,11 @@ class AchatsController < ApplicationController
 
   def create_from
     @utilisation = Utilisation.find(params[:id])
-    @achat = current_user.achats.create_from(@utilisation)
+    @commande = Commande.find(params[:commande_id])
+    @achat = current_user.achats.create_from(@utilisation, @commande)
     @utilisation.checked = true
     @utilisation.save
-    @achats = @utilisation.chantier.achats.order(date_de_achat: :desc)
+    @achats = @utilisation.chantier.achats.joins(:commande).order(date: :desc)
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: [
@@ -122,6 +123,6 @@ class AchatsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def achat_params
-      params.require(:achat).permit(:user_id, :chantier_id, :ressource_id, :date_de_achat, :date_de_livraison, :livre, :matiere_id, :quantite, :commentaire)
+      params.require(:achat).permit(:user_id, :chantier_id, :ressource_id, :commande_id, :date_de_livraison, :livre, :matiere_id, :quantite, :commentaire)
     end
 end

@@ -2,7 +2,7 @@ class Achat < ApplicationRecord
   belongs_to :user
   belongs_to :chantier
   belongs_to :ressource
-  # belongs_to :commande
+  belongs_to :commande
 
   attribute :matiere
   attribute :matiere_id
@@ -27,14 +27,17 @@ class Achat < ApplicationRecord
     end
   end
 
-  def self.create_from(utilisation)
-    c = Achat.new
-    c.chantier = utilisation.chantier
-    c.ressource = utilisation.ressource
-    c.quantite = utilisation.quantite
-    c.date_de_achat = Date.today
-    c.livre = false
-    c.save
+  def date
+    commande.date
+  end
+
+  def self.create_from(utilisation, commande)
+    achat = Achat.new
+    achat.chantier = utilisation.chantier
+    achat.ressource = utilisation.ressource
+    achat.quantite = utilisation.quantite
+    achat.livre = false
+    commande.achats << achat
   end
 
 end

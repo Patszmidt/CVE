@@ -2,6 +2,8 @@
   <%= render @commande %>
 </table>
 
-<div>
-  <%= link_to "Liste des commandes", commandes_path %>
-</div>
+<h2>Achats de cette commande</h2>
+
+<%= render "achats/achats", achats: @commande.achats %>
+
+

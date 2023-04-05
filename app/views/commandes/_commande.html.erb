@@ -14,7 +14,7 @@
   <td>
     <%= commande.livree %>
   </td>
-
+  <td><%= link_to "Afficher", commande, data: { turbo: false } %></td>
   <td><%= link_to "Modifier", edit_commande_path(commande), data: { turbo: false } %></td>
 
 </tr>
