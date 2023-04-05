@@ -2,6 +2,7 @@ class Achat < ApplicationRecord
   belongs_to :user
   belongs_to :chantier
   belongs_to :ressource
+  belongs_to :commande
 
   attribute :matiere
   attribute :matiere_id

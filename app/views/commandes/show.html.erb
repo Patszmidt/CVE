@@ -1,10 +1,8 @@
-<p style="color: green"><%= notice %></p>
-
-<%= render @commande %>
+<table id="achat"   class="styled-table">
+  <%= render @commande %>
+</table>
 
 <div>
-  <%= link_to "Edit this commande", edit_commande_path(@commande) %> |
-  <%= link_to "Back to commandes", commandes_path %>
-
-  <%= button_to "Destroy this commande", @commande, method: :delete %>
+  <%= link_to "Modifier cette commande", edit_commande_path(@commande) %> |
+  <%= link_to "Liste des commandes", commandes_path %>
 </div>

@@ -12,13 +12,13 @@
   <% end %>
 
   <div>
-    <%= form.label :date, style: "display: block" %>
-    <%= form.date_field :date %>
+    <%= form.label "Date de commande", style: "display: block" %>
+    <%= form.date_field :date, value: if commande.date.present? then commande.date else Date.today end %>
   </div>
 
   <div>
     <%= form.label :fournisseur_id, style: "display: block" %>
-    <%= form.text_field :fournisseur_id %>
+    <%= form.collection_select(:fournisseur_id, Fournisseur.all.order(nom: :asc), :id, :nom, { prompt: 'Choisir un fournisseur' }) %>
   </div>
 
   <div>
@@ -27,11 +27,11 @@
   </div>
 
   <div>
-    <%= form.label :livree, style: "display: block" %>
+    <%= form.label "Livrée ?", style: "display: block" %>
     <%= form.check_box :livree %>
   </div>
 
   <div>
-    <%= form.submit %>
+    <%= form.submit "Enregistrer" %>
   </div>
 <% end %>
