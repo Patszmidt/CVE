@@ -52,7 +52,7 @@ class AchatsController < ApplicationController
           turbo_stream.replace("achats", partial: "achats", locals: { achats: @achats }),
           turbo_stream.replace("ressources_chantier", partial: "chantiers/ressources", locals: { chantier: @utilisation.chantier }),
           turbo_stream.replace(@utilisation, partial: @utilisation, locals: { utilisation: @utilisation }) 
-        ]
+        ] 
         
       end
     end
