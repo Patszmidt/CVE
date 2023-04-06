@@ -33,7 +33,8 @@ class AchatsController < ApplicationController
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: [
-          turbo_stream.replace(@achat, partial: @achat, locals: { achat: @achat }) 
+          turbo_stream.replace(@achat, partial: @achat, locals: { achat: @achat }), 
+          turbo_stream.replace(@achat.commande, partial: "commandes/commande", locals: { commande: @achat.commande })
         ]
         
       end

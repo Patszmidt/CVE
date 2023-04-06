@@ -23,8 +23,12 @@ class Commande < ApplicationRecord
   def quantite_commandee(ressource)
   end
 
+  def complete?
+    not achats.any?{|a| a.livre == false}
+  end
+
   def status
-    if livree
+    if complete?
       return "checked"
     else
       return "unchecked"
