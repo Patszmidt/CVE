@@ -3,7 +3,20 @@ class CommandesController < ApplicationController
 
   # GET /commandes or /commandes.json
   def index
+    @commandes = Commande.all.order(date: :desc)
+  end
+
+  def list
     @commandes = Commande.all
+    @commandes = @commandes.where('numero_de_commande ilike ?', "%#{params[:numero_de_commande]}%") if params[:numero_de_commande].present?
+    @commandes = @commandes.order("#{params[:column]} #{params[:direction]}")
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: [
+          turbo_stream.replace('commandes', partial: 'commandes', locals: { commandes: @commandes }) 
+        ]
+      end
+    end
   end
 
   # GET /commandes/1 or /commandes/1.json
@@ -79,6 +92,6 @@ class CommandesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def commande_params
-      params.require(:commande).permit(:date, :fournisseur_id, :numero_de_commande, :livree, :user_id)
+      params.require(:commande).permit(:date, :fournisseur_id, :numero_de_commande, :livree, :user_id, :column)
     end
 end

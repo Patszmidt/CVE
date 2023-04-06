@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
-  resources :commandes
+
+  resources :commandes do
+    collection do
+      get :list
+      post :list
+    end
+  end
+
   resources :fournisseurs
   get 'users/index'
   get 'users/edit'

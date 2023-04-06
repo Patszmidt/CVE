@@ -33,6 +33,10 @@
 
 <%= render "utilisations/utilisations", utilisations: @utilisations %>
 
+<h2>Utilisations compactées du chantier</h2>
+
+<%= render "utilisations/utilisations_virtuelles", utilisations: @utilisations_virtuelles %>
+
 <h2>Achats sur ce chantier</h2>
 
 <%= render "achats/achats", achats: @chantier.achats.order(created_at: :desc) %>

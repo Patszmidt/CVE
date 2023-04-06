@@ -1,3 +1,7 @@
 <h1>Commandes</h1>
 
+<%= form_with url: list_commandes_path, data: { controller: "search-form", search_form_target: "form" } do |form| %>
+    <%= form.text_field :numero_de_commande, placeholder: "Numéro de commande", autocomplete: "off", data: { action: "input->search-form#search" } %>
+<% end %>
+
 <%= render "commandes", commandes: @commandes %>
