@@ -1,0 +1,12 @@
+<table id="commande_ressources"  class="styled-table">
+    <tr>
+        <th>Ressource</th>
+        <th>Quantité commandée</th>
+    </tr>
+    <% commande.ressources.each do |ressource| %>
+        <tr>
+            <td><%= ressource.nom_complet %></td>
+            <td><%= commande.quantite_achetee(ressource) %></td>
+        </tr>
+    <% end %>
+</table>

@@ -4,6 +4,13 @@
 
 <h2>Achats de cette commande</h2>
 
-<%= render "achats/achats", achats: @commande.achats %>
+<%= render "commandes/ressources", commande: @commande %>
+
+<% @commande.chantiers.each do |chantier| %>
+
+  <h3><%= chantier.nom_complet %></h3>
+  <%= render "achats/achats", achats: chantier.achats.where(commande_id: @commande.id) %>
+
+<% end %>
 
 
