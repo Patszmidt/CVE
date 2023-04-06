@@ -5,7 +5,7 @@ class ApplicationRecord < ActiveRecord::Base
     collection.each do |c|
       contenant << c.ressource
     end
-    contenant.uniq.sort_by{|r| r.matiere_id}
+    contenant.uniq.sort_by{|r| r.id}
   end
 
   def extraire_chantiers(collection, contenant)

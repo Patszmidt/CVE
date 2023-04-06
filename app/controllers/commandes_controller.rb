@@ -1,5 +1,5 @@
 class CommandesController < ApplicationController
-  before_action :set_commande, only: %i[ show edit update destroy ]
+  before_action :set_commande, only: %i[ show edit update destroy livrer ]
 
   # GET /commandes or /commandes.json
   def index
@@ -19,9 +19,23 @@ class CommandesController < ApplicationController
   def edit
   end
 
+  def livrer
+    @commande.toggle(:livree)
+    @commande.date_de_livraison = Date.today
+    @commande.save
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: [
+          turbo_stream.replace(@commande, partial: @commande, locals: { commande: @commande }) 
+        ]
+        
+      end
+    end
+  end
+
   # POST /commandes or /commandes.json
   def create
-    @commande = Commande.new(commande_params)
+    @commande = current_user.commandes.new(commande_params)
 
     respond_to do |format|
       if @commande.save
@@ -65,6 +79,6 @@ class CommandesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def commande_params
-      params.require(:commande).permit(:date, :fournisseur_id, :numero_de_commande, :livree)
+      params.require(:commande).permit(:date, :fournisseur_id, :numero_de_commande, :livree, :user_id)
     end
 end

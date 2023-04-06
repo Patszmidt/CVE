@@ -7,6 +7,7 @@ class User < ApplicationRecord
 
   has_many :utilisations
   has_many :achats
+  has_many :commandes
   
   def nom_complet
     return "#{self.prenom} #{self.nom}"

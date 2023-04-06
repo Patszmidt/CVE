@@ -3,6 +3,7 @@ class Commande < ApplicationRecord
   validates :numero_de_commande, presence: true
 
   belongs_to :fournisseur
+  belongs_to :user
   has_many :achats
 
   def ref_complete
@@ -20,6 +21,14 @@ class Commande < ApplicationRecord
   end
 
   def quantite_commandee(ressource)
+  end
+
+  def status
+    if livree
+      return "checked"
+    else
+      return "unchecked"
+    end
   end
 
 

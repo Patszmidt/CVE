@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
   post '/utilisations/:id/traiter', to: 'utilisations#traiter', as: 'traiter_utilisation'
   post '/achats/:id/livrer', to: 'achats#livrer', as: 'livrer_achat'
+  post '/commandes/:id/livrer', to: 'commandes#livrer', as: 'livrer_commande'
   post '/achats/:id/create_from', to: 'achats#create_from', as: 'create_achat_from'
   post "/chantiers/:id/trier_par_ressources", to: 'utilisations#trier_par_ressources', as: 'trier_par_ressources_utilisations'
 

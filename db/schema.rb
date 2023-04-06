@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_05_121716) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_06_083616) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -55,7 +55,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_05_121716) do
     t.boolean "livree"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "date_de_livraison"
+    t.bigint "user_id"
     t.index ["fournisseur_id"], name: "index_commandes_on_fournisseur_id"
+    t.index ["user_id"], name: "index_commandes_on_user_id"
   end
 
   create_table "fournisseurs", force: :cascade do |t|
@@ -130,6 +133,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_05_121716) do
   add_foreign_key "achats", "users"
   add_foreign_key "chantiers", "clients"
   add_foreign_key "commandes", "fournisseurs"
+  add_foreign_key "commandes", "users"
   add_foreign_key "ressources", "matieres"
   add_foreign_key "utilisations", "chantiers"
   add_foreign_key "utilisations", "machines"

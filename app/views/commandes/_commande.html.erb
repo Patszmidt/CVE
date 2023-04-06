@@ -1,4 +1,4 @@
-<tr id="<%= dom_id commande %>">
+<tr id="<%= dom_id commande %>" class="<%= commande.status %>">
   <td>
     <%= commande.date.strftime("%d/%m/%Y") %>
   </td>
@@ -10,10 +10,17 @@
   <td>
     <%= commande.numero_de_commande %>
   </td>
-
   <td>
-    <%= commande.livree %>
-  </td>
+        <% unless commande.livree %>
+            <%= form_with(url: livrer_commande_path(commande), method: :post ) do |form| %>
+                <%= form.submit "Marquer comme livrée" %>
+            <% end %>
+        <% else %>
+            Livrée le <%= commande.date_de_livraison.strftime("%d/%m/%Y") %>
+        <% end %>    
+    </td>
+
+
   <td><%= link_to "Afficher", commande, data: { turbo: false } %></td>
   <td><%= link_to "Modifier", edit_commande_path(commande), data: { turbo: false } %></td>
 

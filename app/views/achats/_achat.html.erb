@@ -9,10 +9,10 @@
     <td>
         <% unless achat.livre %>
             <%= form_with(url: livrer_achat_path(achat), method: :post ) do |form| %>
-                <%= form.submit "livrer" %>
+                <%= form.submit "Marquer comme livré" %>
             <% end %>
         <% else %>
-            Livré
+            Livré le <%= achat.date_de_livraison.strftime("%d/%m/%Y") %>
         <% end %>    
     </td>
 
