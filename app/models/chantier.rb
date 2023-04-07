@@ -28,8 +28,8 @@ class Chantier < ApplicationRecord
         utilisation_virtuelle.quantite = qte
         utilisation_virtuelle.chantier = self
         utilisations_virtuelles << utilisation_virtuelle
-        return utilisations_virtuelles
       end
+      return utilisations_virtuelles
     end
 
   def ressources

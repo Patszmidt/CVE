@@ -4,7 +4,7 @@ class Ressource < ApplicationRecord
   has_many :achats
   
   def nom_complet
-    return "#{self.matiere.nom} #{self.epaisseur}mm #{self.couleur} #{self.qualite}"
+    return "#{self.matiere.nom} #{self.epaisseur}mm #{self.dimension} #{self.couleur} #{self.qualite}"
   end
   
   def quantite_utilisee

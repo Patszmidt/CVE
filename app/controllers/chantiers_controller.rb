@@ -4,7 +4,7 @@ class ChantiersController < ApplicationController
 
   # GET /chantiers or /chantiers.json
   def index
-    @chantiers = Chantier.all.order(date_de_livraison: :desc)
+    @chantiers = Chantier.all.order(:nom)
   end
 
   # GET /chantiers/1 or /chantiers/1.json

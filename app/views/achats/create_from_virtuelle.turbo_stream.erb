@@ -2,12 +2,14 @@
 	<%= render "achats/achats", achats: @achats %>
 <% end %>
 
-<%= turbo_stream.replace "utilisations" do %>
-	<%= render "utilisations/utilisations", utilisations: @chantier.utilisations %>
+<% @utilisations.each do |utilisation| %>
+	<%= turbo_stream.replace "utilisation_#{utilisation.id}" do %>
+		<%= render "utilisations/utilisation", utilisation: utilisation %>
+	<% end %>
 <% end %>
 
-<%= turbo_stream.replace "utilisations_virtuelles" do %>
-	<%= render "utilisations/utilisations_virtuelles", utilisations: @chantier.utilisations_virtuelles %>
+<%= turbo_stream.replace "utilisations_virtuelles_#{@chantier.id}" do %>
+	<%= render "utilisations/utilisations_virtuelles", chantier: @chantier %>
 <% end %>
 
 <%= turbo_stream.replace "chantier_ressources" do %>
