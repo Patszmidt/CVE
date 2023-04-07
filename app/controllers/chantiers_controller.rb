@@ -10,21 +10,8 @@ class ChantiersController < ApplicationController
   # GET /chantiers/1 or /chantiers/1.json
   def show
     @utilisations = @chantier.utilisations.order(created_at: :desc)
-    @utilisations_virtuelles = []
-    @chantier.ressources.each do |r|
-      qte = 0
-      @utilisations.select{|u| u.ressource_id == r.id}.each do |u|
-        qte += u.quantite
-      end
-      utilisation_virtuelle = Utilisation.new
-      utilisation_virtuelle.ressource = r
-      utilisation_virtuelle.date = Date.today
-      utilisation_virtuelle.machine = Machine.first
-      utilisation_virtuelle.quantite = qte
-      utilisation_virtuelle.chantier = @chantier
-      @utilisations_virtuelles << utilisation_virtuelle
-    end
-
+    @achats = @chantier.achats.order(created_at: :desc)
+    @utilisations_virtuelles = @chantier.utilisations_virtuelles
   end
 
   # GET /chantiers/new

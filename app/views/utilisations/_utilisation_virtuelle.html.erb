@@ -1,8 +1,17 @@
 <tr>
     <td><%= utilisation.quantite %></td>
-    <td><%= utilisation.ressource.nom_complet %></td>
-    <td><%= link_to utilisation.chantier.nom_complet, utilisation.chantier, data: { turbo: false } %></td>
-    
-
+    <td><%= utilisation.ressource.nom_complet %></td>   
+    <td>
+        <% if utilisation.quantite > 0 %>
+            <%= form_with(url: create_achat_from_virtuelle_path, method: :post) do |form| %>
+                <%= form.collection_select(:commande_id, Commande.all.order(date: :desc), :id, :ref_complete, { prompt: 'Choisir une commande' }) %>
+                <%= hidden_field_tag "origines", utilisation.origines.join(',') %>
+                <%= hidden_field_tag "chantier_id", utilisation.chantier.id %>
+                <%= hidden_field_tag "ressource_id", utilisation.ressource.id %>
+                <%= hidden_field_tag "quantite", utilisation.quantite %>
+                <%= form.submit "Acheter" %>
+            <% end %>
+        <% end %>
+    </td>
 
 </tr>

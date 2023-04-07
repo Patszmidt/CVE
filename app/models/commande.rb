@@ -36,4 +36,6 @@ class Commande < ApplicationRecord
   end
 
 
+
+
 end

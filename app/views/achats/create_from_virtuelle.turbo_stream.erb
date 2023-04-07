@@ -1,0 +1,15 @@
+<%= turbo_stream.replace "achats" do %>
+	<%= render "achats/achats", achats: @achats %>
+<% end %>
+
+<%= turbo_stream.replace "utilisations" do %>
+	<%= render "utilisations/utilisations", utilisations: @chantier.utilisations %>
+<% end %>
+
+<%= turbo_stream.replace "utilisations_virtuelles" do %>
+	<%= render "utilisations/utilisations_virtuelles", utilisations: @chantier.utilisations_virtuelles %>
+<% end %>
+
+<%= turbo_stream.replace "chantier_ressources" do %>
+	<%= render "chantiers/ressources", chantier: @chantier %>
+<% end %>

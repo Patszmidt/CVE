@@ -31,4 +31,5 @@ class ApplicationRecord < ActiveRecord::Base
     return qte
   end
 
+
 end

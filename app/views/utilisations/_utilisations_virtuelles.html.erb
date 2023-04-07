@@ -3,9 +3,8 @@
   <tr>
     <th>Quantité</th>
     <th>Ressource</th>
-    <th>Chantier</th>
   </tr>  
-    <% @utilisations_virtuelles.each do |utilisation| %>
+    <% utilisations.each do |utilisation| %>
         <%= render partial: "utilisations/utilisation_virtuelle", locals: { utilisation: utilisation } %>
     <% end %>
   </table>

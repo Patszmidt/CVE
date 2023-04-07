@@ -12,7 +12,7 @@
             <% end %>
         </td>
         <td>
-            <%= form_with(url: create_achat_from_path(utilisation), method: :post, data: { turbo_frame: "achats" }) do |form| %>
+            <%= form_with(url: create_achat_from_path(utilisation), method: :post) do |form| %>
                 <%= form.collection_select(:commande_id, Commande.all.order(date: :desc), :id, :ref_complete, { prompt: 'Choisir une commande' }) %>
                 <%= form.submit "Acheter" %>
             <% end %>

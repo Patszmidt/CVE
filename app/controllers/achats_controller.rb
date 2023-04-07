@@ -61,6 +61,32 @@ class AchatsController < ApplicationController
 
   end
 
+  def create_from_virtuelle
+    origines = params[:origines].split(',')
+    @utilisations = []
+    origines.each do |o|
+      @utilisations << Utilisation.find(o)
+    end
+    @commande = Commande.find(params[:commande_id])
+    @chantier = Chantier.find(params[:chantier_id])
+    @utilisation = Utilisation.new
+    @utilisation.chantier = @chantier
+    @utilisation.ressource = Ressource.find(params[:ressource_id])
+    @utilisation.quantite = params[:quantite]
+    @achat = current_user.achats.create_from(@utilisation, @commande)
+    if @achat
+      @utilisations.each do |u|
+        u.checked = true
+        u.save
+      end
+    end
+    @achats = @utilisation.chantier.achats.joins(:commande).order(date: :desc)
+    respond_to do |format|
+      format.turbo_stream        
+    end
+
+  end
+
   # GET /achats/1 or /achats/1.json
   def show
   end
@@ -124,6 +150,6 @@ class AchatsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def achat_params
-      params.require(:achat).permit(:user_id, :chantier_id, :ressource_id, :commande_id, :date_de_livraison, :livre, :matiere_id, :quantite, :commentaire)
+      params.require(:achat).permit(:user_id, :chantier_id, :ressource_id, :commande_id, :date_de_livraison, :livre, :matiere_id, :quantite, :commentaire, :origines)
     end
 end
