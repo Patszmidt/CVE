@@ -1,18 +1,21 @@
+<div data-controller="hello">
+  <div id="box", data-hello-target="box"></div>
+  <table id="commandes"  class="styled-table">
+    <tr>
+      <th id="commandes-date" class="sortable-th"> 
+        <%= sort_indicator if params[:column] == "date" %>
+        <%= sort_link(column: "date", label: "Date de commande") %>
+      </th>
+      <th id="commandes-fournisseur_id" class="sortable-th">
+        <%= sort_indicator if params[:column] == "fournisseur_id" %>
+        <%= sort_link(column: "fournisseur_id", label: "Fournisseur") %>
+      </th>
+      <th id="commandes-numero_de_commande" class="sortable-th">
+        <%= sort_indicator if params[:column] == "numero_de_commande" %>
+        <%= sort_link(column: "numero_de_commande", label: "Numéro de commande") %>
+      </th>
+    </tr>
+    <%= render commandes %>
+  </table>
 
-<table id="commandes"  class="styled-table">
-  <tr>
-    <th id="commandes-date" class="sortable-th"> 
-      <%= sort_indicator if params[:column] == "date" %>
-      <%= sort_link(column: "date", label: "Date de commande") %>
-    </th>
-    <th id="commandes-fournisseur_id" class="sortable-th">
-      <%= sort_indicator if params[:column] == "fournisseur_id" %>
-      <%= sort_link(column: "fournisseur_id", label: "Fournisseur") %>
-    </th>
-    <th id="commandes-numero_de_commande" class="sortable-th">
-      <%= sort_indicator if params[:column] == "numero_de_commande" %>
-      <%= sort_link(column: "numero_de_commande", label: "Numéro de commande") %>
-    </th>
-  </tr>
-  <%= render commandes %>
-</table>
+</div>
