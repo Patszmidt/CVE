@@ -1,5 +1,5 @@
 class CommandesController < ApplicationController
-  before_action :set_commande, only: %i[ show edit update destroy livrer ]
+  before_action :set_commande, only: %i[ show edit update destroy livrer details]
 
   # GET /commandes or /commandes.json
   def index
@@ -16,6 +16,12 @@ class CommandesController < ApplicationController
           turbo_stream.replace('commandes', partial: 'commandes', locals: { commandes: @commandes }) 
         ]
       end
+    end
+  end
+
+  def details
+    respond_to do |format|
+      format.turbo_stream
     end
   end
 

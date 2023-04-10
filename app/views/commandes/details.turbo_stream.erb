@@ -1,0 +1,6 @@
+<%= turbo_stream.replace "box" do %>
+    <div id="box">
+        <h3>Commande <%= @commande.ref_complete %></h3>
+	    <%= render "commandes/ressources", commande: @commande %>
+    </div>
+<% end %>

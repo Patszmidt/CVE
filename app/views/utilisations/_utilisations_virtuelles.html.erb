@@ -1,7 +1,9 @@
 
   <table id="utilisations_virtuelles_<%= chantier.id %>" class="styled-table">
   <tr>
-    <th>Quantité</th>
+    <th>Quantité utilisée</th>
+    <th>Quantité achetée</th>
+    <th>Quantité à acheter</th>
     <th>Ressource</th>
   </tr>  
     <% chantier.utilisations_virtuelles.each do |utilisation| %>

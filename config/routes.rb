@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     collection do
       get :list
       post :list
+      get ':id/details', to: 'commandes#details', as: 'details_commande'
     end
   end
 
