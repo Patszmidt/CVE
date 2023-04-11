@@ -8,11 +8,7 @@ class Ressource < ApplicationRecord
   end
   
   def quantite_utilisee
-    qte = 0
-    self.utilisations.each do |u|
-      qte += u.quantite
-    end
-    return qte
+    utilisations.sum{|u| u.quantite}
   end
   
 end

@@ -37,13 +37,11 @@ class Chantier < ApplicationRecord
   end
 
   def ressources_utilisees
-    ressources = []
-    ressources = extraire_ressources(utilisations, ressources)
+    extraire_ressources(utilisations)
   end
 
   def ressources_achetees
-    ressources = []
-    ressources = extraire_ressources(achats, ressources)
+    extraire_ressources(achats)
   end
 
 

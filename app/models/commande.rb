@@ -11,13 +11,11 @@ class Commande < ApplicationRecord
   end
 
   def ressources
-    ressources = []
-    extraire_ressources(achats, ressources)
+    extraire_ressources(achats)
   end
 
   def chantiers
-    chantiers = []
-    extraire_chantiers(achats, chantiers)
+    extraire_chantiers(achats)
   end
 
   def quantite_commandee(ressource)
