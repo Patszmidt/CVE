@@ -27,7 +27,8 @@ export default class extends Controller {
   		})
   }
 
-  //unhover() {
-   // this.boxTarget.style.display = "none";
-  //}
+  hide() {
+    console.log("Click")
+    this.boxTarget.style.display = "none";
+  }
 }

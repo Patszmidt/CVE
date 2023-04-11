@@ -1,6 +1,7 @@
 <%= turbo_stream.replace "box" do %>
-    <div id="box">
+    <div id="box" data-hello-target="box">
         <h3>Commande <%= @commande.ref_complete %></h3>
 	    <%= render "commandes/ressources", commande: @commande %>
+        <button data-action="hello#hide">Cacher</button>
     </div>
 <% end %>
