@@ -1,10 +1,11 @@
-<table id="chantier"  class="styled-table">
+<table id="chantier"   class="styled-table">
     <tr>
-        <th>Chantier</th>
-        <th>Achats à passer?</th>
+        <th>Nom</th>
+        <th>Client</th>
+        <th>Date de livraison</th>
+        <th>Achats à passer ?</th>
     </tr>
-	<%= render @chantier %>
-	<tr><td><%= link_to "Modifier ce chantier", edit_chantier_path(@chantier) %></td></tr>
+  <%= render @chantier %>
 </table>
 
 <h2>Utilisations sur ce chantier</h2>

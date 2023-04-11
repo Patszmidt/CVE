@@ -1,5 +1,7 @@
 <tr id="<%= dom_id chantier %>">
-    <td><%= link_to chantier.nom_complet, chantier  %></td>
+    <td><%= link_to chantier.nom, chantier  %></td>
+    <td><%= link_to chantier.client.nom, chantier.client  %></td>
+    <td><%= chantier.date_de_livraison.strftime("%d/%m/%Y") %></td>
     <td>
         <% if chantier.equilibre? %>
             Non
@@ -7,4 +9,5 @@
             Oui
         <% end %>
     </td>
+    <td><%= link_to "Modifier ce chantier", edit_chantier_path(chantier) %></td>
 </tr>

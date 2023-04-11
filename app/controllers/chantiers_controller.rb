@@ -14,6 +14,31 @@ class ChantiersController < ApplicationController
     @utilisations_virtuelles = @chantier.utilisations_virtuelles
   end
 
+  def list
+    @chantiers = Chantier.all
+    @chantiers = @chantiers.where('nom ilike ?', "%#{params[:nom]}%") if params[:nom].present?
+    if params[:column] == "client"
+      @chantiers = @chantiers.sort_by{|c| c.client.nom}
+      if params[:direction] == "desc"
+        @chantiers.reverse!
+      end
+    elsif params[:column] == "achats"
+      @chantiers = @chantiers.sort_by{|c| c.equilibre? ? 0 : 1}
+      if params[:direction] == "desc"
+        @chantiers.reverse!
+      end
+    else
+      @chantiers = @chantiers.order("#{params[:column]} #{params[:direction]}")
+    end
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: [
+          turbo_stream.replace('chantiers', partial: 'chantiers', locals: { chantiers: @chantiers }) 
+        ]
+      end
+    end
+  end
+
   # GET /chantiers/new
   def new
     @chantier = Chantier.new

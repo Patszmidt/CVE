@@ -1,16 +1,12 @@
 <h1>Chantiers</h1>
 
+<%= form_with url: list_chantiers_path, data: { controller: "search-form", search_form_target: "form" } do |form| %>
+    <%= form.text_field :nom, placeholder: "Nom du chantier", autocomplete: "off", data: { action: "input->search-form#search" } %>
+<% end %>
+
 <p>
   <%= link_to "Nouveau chantier", new_chantier_path %>
 </p>
 
-<table id="chantiers"  class="styled-table">
-  <tr>
-    <th>Chantier</th>
-    <th>Achats à passer?</th>
-  </tr>
-  <% @chantiers.each do |chantier| %>
-    <%= render chantier %>
-  <% end %>
-</table>
+<%= render "chantiers", chantiers: @chantiers %>
 

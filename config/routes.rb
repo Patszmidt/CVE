@@ -33,7 +33,12 @@ Rails.application.routes.draw do
   resources :machines
   resources :utilisateurs
   resources :users
-  resources :chantiers 
+  resources :chantiers do
+    collection do
+      get :list
+      post :list
+    end
+  end
   resources :clients
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
