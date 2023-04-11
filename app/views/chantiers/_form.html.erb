@@ -32,6 +32,11 @@
   </div>
 
   <div>
+    <%= form.label :cloture, "Cloturé ?", style: "display: block" %>
+    <%= form.check_box :cloture %>
+  </div>
+
+  <div>
     <%= form.submit %>
   </div>
 <% end %>

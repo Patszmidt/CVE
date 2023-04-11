@@ -6,6 +6,13 @@ class Chantier < ApplicationRecord
   validates :nom, uniqueness: { message: "existe déjà", case_sensitive: false }
   validates :date_de_livraison, presence: true
   
+  def self.actifs
+    Chantier.where(cloture: false).order(:nom)
+  end
+
+  def self.clotures
+    Chantier.where(cloture: true).order(:nom)
+  end
    
   def nom_complet
     return "#{self.nom} (#{self.client.nom})"

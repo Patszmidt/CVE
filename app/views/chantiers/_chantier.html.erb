@@ -9,5 +9,14 @@
             Oui
         <% end %>
     </td>
+    <td>
+        <% if chantier.cloture %>
+            Cloturé
+        <% else %>
+            <%= form_with(url: cloturer_chantier_path(chantier), method: :post ) do |form| %>
+                <%= form.submit "Cloturer" %>
+            <% end %>
+        <% end %>
+    </td>
     <td><%= link_to "Modifier ce chantier", edit_chantier_path(chantier) %></td>
 </tr>

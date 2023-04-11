@@ -38,6 +38,9 @@ Rails.application.routes.draw do
       get :list
       post :list
     end
+    member do
+      post :cloturer
+    end
   end
   resources :clients
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

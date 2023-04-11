@@ -1,10 +1,11 @@
 class ChantiersController < ApplicationController
-  before_action :set_chantier, only: %i[ show edit update destroy ]
+  before_action :set_chantier, only: %i[ show edit update destroy cloturer ]
   before_action :set_clients
 
   # GET /chantiers or /chantiers.json
   def index
-    @chantiers = Chantier.all.order(:nom)
+    @chantiers_actifs = Chantier.actifs
+    @chantiers_clotures = Chantier.clotures
   end
 
   # GET /chantiers/1 or /chantiers/1.json
@@ -15,28 +16,40 @@ class ChantiersController < ApplicationController
   end
 
   def list
-    @chantiers = Chantier.all
-    @chantiers = @chantiers.where('nom ilike ?', "%#{params[:nom]}%") if params[:nom].present?
+    @chantiers_actifs = Chantier.actifs
+    @chantiers_clotures = Chantier.clotures
+    @chantiers_actifs = @chantiers_actifs.where('nom ilike ?', "%#{params[:nom]}%") if params[:nom].present?
+    @chantiers_clotures = @chantiers_clotures.where('nom ilike ?', "%#{params[:nom]}%") if params[:nom].present?
     if params[:column] == "client"
-      @chantiers = @chantiers.sort_by{|c| c.client.nom}
+      @chantiers_actifs.sort_by{|c| c.client.nom}
+      @chantiers_clotures.sort_by{|c| c.client.nom}
       if params[:direction] == "desc"
-        @chantiers.reverse!
+        @chantiers_actifs.reverse!
+        @chantiers_clotures.reverse!
       end
     elsif params[:column] == "achats"
-      @chantiers = @chantiers.sort_by{|c| c.equilibre? ? 0 : 1}
+      @chantiers_actifs.sort_by{|c| c.equilibre? ? 0 : 1}
+      @chantiers_clotures.sort_by{|c| c.equilibre? ? 0 : 1}
       if params[:direction] == "desc"
-        @chantiers.reverse!
+        @chantiers_actifs.reverse!
+        @chantiers_clotures.reverse!
       end
     else
-      @chantiers = @chantiers.order("#{params[:column]} #{params[:direction]}")
+      @chantiers_actifs = @chantiers_actifs.order("#{params[:column]} #{params[:direction]}")
+      @chantiers_clotures = @chantiers_clotures.order("#{params[:column]} #{params[:direction]}")
     end
     respond_to do |format|
-      format.turbo_stream do
-        render turbo_stream: [
-          turbo_stream.replace('chantiers', partial: 'chantiers', locals: { chantiers: @chantiers }) 
-        ]
-      end
+      format.turbo_stream
     end
+  end
+
+  def cloturer
+    @chantier.cloture = true
+    @chantier.save
+    respond_to do |format|
+      format.turbo_stream
+    end
+
   end
 
   # GET /chantiers/new
@@ -98,6 +111,6 @@ class ChantiersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def chantier_params
-      params.require(:chantier).permit(:nom, :client_id, :date_de_livraison, :livre)
+      params.require(:chantier).permit(:nom, :client_id, :date_de_livraison, :livre, :cloture)
     end
 end

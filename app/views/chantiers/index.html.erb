@@ -4,5 +4,11 @@
     <%= form.text_field :nom, placeholder: "Nom du chantier", autocomplete: "off", data: { action: "input->search-form#search" } %>
 <% end %>
 
-<%= render "chantiers", chantiers: @chantiers %>
+<h2>Chantiers actifs</h2>
+
+<%= render partial: 'chantiers', locals: {chantiers: @chantiers_actifs, chantiers_id: "chantiers_actifs"} %>
+
+<h2>Chantiers cloturés</h2>
+
+<%= render partial: "chantiers", locals: {chantiers: @chantiers_clotures, chantiers_id: "chantiers_clotures"} %>
 
