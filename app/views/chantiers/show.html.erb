@@ -36,7 +36,9 @@
 
 <h2>Utilisations regroupées du chantier</h2>
 
-<%= render "utilisations/utilisations_virtuelles", utilisations_virtuelles: @chantier.utilisations_virtuelles %>
+<% if @chantier.utilisations_virtuelles != [] %>
+    <%= render "utilisations/utilisations_virtuelles", utilisations_virtuelles: @chantier.utilisations_virtuelles %>
+<% end %>
 
 <h2>Achats sur ce chantier</h2>
 

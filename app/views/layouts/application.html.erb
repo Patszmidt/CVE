@@ -31,24 +31,27 @@
             	<li>
                     <%= link_to "Utilisations", utilisations_path %>
                 </li>
-                <ul>
-                	<li><%= link_to "Nouvelle utilisation", new_utilisation_path %></li>
-                </ul>
+                
+                <li><%= link_to "Nouvelle utilisation", new_utilisation_path %></li>
+                
                 <li>
                     <%= link_to "Fournisseurs", fournisseurs_path %>
                 </li>
                 <li>
+                    <%= link_to "Nouveau fournisseur", new_fournisseur_path %>
+                </li>
+                <li>
                     <%= link_to "Commandes", commandes_path %>
                 </li>
-                <ul>
-                	<li><%= link_to "Nouvelle commande", new_commande_path %></li>
-                </ul>
+                
+                <li><%= link_to "Nouvelle commande", new_commande_path %></li>
+                
                 <li>
                     <%= link_to "Achats", achats_path %>
                 </li>
-                <ul>
-                	<li><%= link_to "Nouvel achat", new_achat_path %></li>
-                </ul>
+                
+                <li><%= link_to "Nouvel achat", new_achat_path %></li>
+                
                 <li>
                     <%= link_to "Ressources", ressources_path %>
                 </li>
@@ -59,7 +62,13 @@
                     <%= link_to "Chantiers", chantiers_path %>
                 </li>
                 <li>
+                    <%= link_to "Nouveau chantier", new_chantier_path %>
+                </li>
+                <li>
                     <%= link_to "Clients", clients_path  %>
+                </li>
+                <li>
+                    <%= link_to "Nouveau client", new_client_path  %>
                 </li>                
                 <li>
                     <%= link_to "Utilisateurs", users_path %>

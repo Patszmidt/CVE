@@ -4,9 +4,5 @@
     <%= form.text_field :nom, placeholder: "Nom du chantier", autocomplete: "off", data: { action: "input->search-form#search" } %>
 <% end %>
 
-<p>
-  <%= link_to "Nouveau chantier", new_chantier_path %>
-</p>
-
 <%= render "chantiers", chantiers: @chantiers %>
 
