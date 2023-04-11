@@ -3,7 +3,7 @@ class Chantier < ApplicationRecord
   belongs_to :client
   has_many :utilisations
   has_many :achats
-  validates :nom, uniqueness: { message: "existe déjà" }
+  validates :nom, uniqueness: { message: "existe déjà", case_sensitive: false }
   validates :date_de_livraison, presence: true
   
    
