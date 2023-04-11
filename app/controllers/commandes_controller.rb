@@ -27,6 +27,7 @@ class CommandesController < ApplicationController
 
   # GET /commandes/1 or /commandes/1.json
   def show
+    
   end
 
   # GET /commandes/new

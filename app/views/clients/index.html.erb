@@ -4,14 +4,6 @@
   <%= link_to "Nouveau client", new_client_path %>
 </p>
 
-<div class="table" id="clients">
-  <% @clients.each do |client| %>
-    <%= render client %>
-    <div class="table-cell">
-      <%= link_to "Détails du client", client %>
-    </div>
-   </div>
-  <% end %>
-</div>
+<%= render "clients", clients: @clients %>
 
 

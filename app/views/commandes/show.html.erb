@@ -13,4 +13,13 @@
 
 <% end %>
 
+<h2>Achats en attente par chantier</h2>
+
+<% Chantier.all.each do |chantier| %>
+  <% if chantier.utilisations_virtuelles_a_acheter != [] %>
+      <h3><%= chantier.nom_complet %></h3>
+      <%= render "utilisations/utilisations_virtuelles", utilisations_virtuelles: chantier.utilisations_virtuelles_a_acheter %>
+  <% end %>
+<% end %>
+
 

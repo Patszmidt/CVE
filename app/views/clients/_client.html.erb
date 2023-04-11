@@ -1,2 +1,8 @@
-<div class="table-row" id="<%= dom_id client %>">
-    <div class="table-cell"><%= client.nom %></div>
+<tr id="<%= dom_id client %>">
+  <td>
+    <%= link_to client.nom, client, data: { turbo: false } %></td>
+  </td>
+
+  <td><%= link_to "Modifier", edit_client_path(client), data: { turbo: false } %></td>
+
+</tr>

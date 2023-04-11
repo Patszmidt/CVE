@@ -1,12 +1,12 @@
 
-  <table id="utilisations_virtuelles_<%= chantier.id %>" class="styled-table">
+  <table id="utilisations_virtuelles_<%= utilisations_virtuelles.first.chantier.id %>" class="styled-table">
   <tr>
     <th>Quantité utilisée</th>
     <th>Quantité achetée</th>
     <th>Quantité à acheter</th>
     <th>Ressource</th>
   </tr>  
-    <% chantier.utilisations_virtuelles.each do |utilisation| %>
+    <% utilisations_virtuelles.each do |utilisation| %>
         <%= render partial: "utilisations/utilisation_virtuelle", locals: { utilisation: utilisation } %>
     <% end %>
   </table>

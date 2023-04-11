@@ -48,5 +48,5 @@
 
 <% @utilisations.map{|u| u.chantier}.uniq.each do |chantier| %>
     <h3><%= chantier.nom_complet %></h3>
-    <%= render "utilisations/utilisations_virtuelles", chantier: chantier %>
+    <%= render "utilisations/utilisations_virtuelles", utilisations_virtuelles: chantier.utilisations_virtuelles %>
 <% end %>

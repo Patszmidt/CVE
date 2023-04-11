@@ -32,6 +32,10 @@ class Chantier < ApplicationRecord
       return utilisations_virtuelles
     end
 
+  def utilisations_virtuelles_a_acheter
+    utilisations_virtuelles.select{|u| u.quantite > 0}
+  end
+
   def ressources
     (ressources_utilisees + ressources_achetees).uniq
   end

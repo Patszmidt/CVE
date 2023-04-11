@@ -6,7 +6,7 @@
     <td>
         <% if utilisation.quantite > 0 %>
             <%= form_with(url: create_achat_from_virtuelle_path, method: :post) do |form| %>
-                <%= form.collection_select(:commande_id, Commande.all.order(date: :desc), :id, :ref_complete, { prompt: 'Choisir une commande' }) %>
+                <%= form.collection_select(:commande_id, Commande.all.order(date: :desc), :id, :ref_complete, { prompt: 'Choisir une commande', selected: if params["id"] && controller_name == "commandes" then params["id"] end } ) %>
                 <%= hidden_field_tag "origines", utilisation.origines.join(',') %>
                 <%= hidden_field_tag "chantier_id", utilisation.chantier.id %>
                 <%= hidden_field_tag "ressource_id", utilisation.ressource.id %>

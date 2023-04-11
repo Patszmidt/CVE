@@ -1,20 +1,22 @@
-<p style="color: green"><%= notice %></p>
-
-<div class="table" id="client">
+<table id="client"  class="styled-table">
+    <tr>
+        <th>Nom</th>
+    </tr>
 	<%= render @client %>
-	<div class="table-cell"><%= link_to "Modifier ce client", edit_client_path(@client) %></div>
-	</div>
-</div>
+</table>
+
 <h2>Chantiers associés à ce client</h2>
-<div class="table" id="chantiers">
+
+<table id="chantiers"  class="styled-table">
+  <tr>
+    <th>Chantier</th>
+    <th>Achats à passer?</th>
+  </tr>
   <% @client.chantiers.each do |chantier| %>
     <%= render chantier %>
-    <div class="table-cell">
-      <%= link_to "Détails du chantier", chantier %>
-    </div>
-   </div>
   <% end %>
-</div>
+</table>
+
 <p>
 	<%= link_to "Liste des clients", clients_path %>
 </p>
