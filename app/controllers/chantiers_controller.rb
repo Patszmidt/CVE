@@ -21,18 +21,18 @@ class ChantiersController < ApplicationController
     @chantiers_actifs = @chantiers_actifs.where('nom ilike ?', "%#{params[:nom]}%") if params[:nom].present?
     @chantiers_clotures = @chantiers_clotures.where('nom ilike ?', "%#{params[:nom]}%") if params[:nom].present?
     if params[:column] == "client"
-      @chantiers_actifs.sort_by{|c| c.client.nom}
-      @chantiers_clotures.sort_by{|c| c.client.nom}
+      @chantiers_actifs = @chantiers_actifs.to_a.sort_by{|c| c.client.nom}
+      @chantiers_clotures = @chantiers_clotures.to_a.sort_by{|c| c.client.nom}
       if params[:direction] == "desc"
-        @chantiers_actifs = @chantiers_actifs.reverse
-        @chantiers_clotures = @chantiers_clotures.reverse
+        @chantiers_actifs.reverse!
+        @chantiers_clotures.reverse!
       end
     elsif params[:column] == "achats"
-      @chantiers_actifs.sort_by{|c| c.equilibre? ? 0 : 1}
-      @chantiers_clotures.sort_by{|c| c.equilibre? ? 0 : 1}
+      @chantiers_actifs = @chantiers_actifs.to_a.sort_by{|c| c.equilibre? ? 0 : 1}
+      @chantiers_clotures = @chantiers_clotures.to_a.sort_by{|c| c.equilibre? ? 0 : 1}
       if params[:direction] == "desc"
-        @chantiers_actifs = @chantiers_actifs.reverse
-        @chantiers_clotures = @chantiers_clotures.reverse
+        @chantiers_actifs.reverse!
+        @chantiers_clotures.reverse!
       end
     else
       @chantiers_actifs = @chantiers_actifs.order("#{params[:column]} #{params[:direction]}")
