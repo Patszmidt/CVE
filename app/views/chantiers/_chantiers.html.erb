@@ -1,21 +1,25 @@
 <table id="<%= chantiers_id %>"  class="styled-table">
-  <tr>
-    <th id="chantiers-nom" class="sortable-th"> 
-        <%= sort_indicator if params[:column] == "nom" %>
-        <%= sort_link(model: "chantiers", column: "nom", label: "Nom") %>
-    </th>
-    <th id="chantiers-client" class="sortable-th"> 
-        <%= sort_indicator if params[:column] == "client" %>
-        <%= sort_link(model: "chantiers", column: "client", label: "Client") %>
-    </th>
-    <th id="chantiers-date_de_livraison" class="sortable-th"> 
-        <%= sort_indicator if params[:column] == "date_de_livraison" %>
-        <%= sort_link(model: "chantiers", column: "date_de_livraison", label: "Date de livraison") %>
-    </th>
-    <th id="chantiers-achats" class="sortable-th"> 
-        <%= sort_indicator if params[:column] == "achats" %>
-        <%= sort_link(model: "chantiers", column: "achats", label: "Achats à passer ?") %>
-    </th>
-  </tr>
-  <%= render chantiers %>
-  </table>
+    <thead>
+        <tr>
+            <th id="chantiers-nom" class="sortable-th"> 
+                <%= sort_indicator if params[:column] == "nom" %>
+                <%= sort_link(model: "chantiers", column: "nom", label: "Nom") %>
+            </th>
+            <th id="chantiers-client" class="sortable-th"> 
+                <%= sort_indicator if params[:column] == "client" %>
+                <%= sort_link(model: "chantiers", column: "client", label: "Client") %>
+            </th>
+            <th id="chantiers-date_de_livraison" class="sortable-th"> 
+                <%= sort_indicator if params[:column] == "date_de_livraison" %>
+                <%= sort_link(model: "chantiers", column: "date_de_livraison", label: "Date de livraison") %>
+            </th>
+            <th id="chantiers-achats" class="sortable-th"> 
+                <%= sort_indicator if params[:column] == "achats" %>
+                <%= sort_link(model: "chantiers", column: "achats", label: "Achats à passer ?") %>
+            </th>
+        </tr>
+    </thead>
+    <tbody id="<%= chantiers_id %>_body">
+        <%= render chantiers %>
+    </tbody>  
+</table>

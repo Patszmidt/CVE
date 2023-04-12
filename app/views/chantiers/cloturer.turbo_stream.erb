@@ -1,3 +1,7 @@
 <%= turbo_stream.replace "chantier_#{@chantier.id}" do %>
-	<%= render "chantier", chantier: @chantier %>
+	<%= render @chantier %>
+<% end %>
+
+<%= turbo_stream.append "chantiers_clotures_body" do %>
+	<%= render @chantier %>
 <% end %>

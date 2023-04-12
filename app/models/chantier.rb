@@ -7,11 +7,11 @@ class Chantier < ApplicationRecord
   validates :date_de_livraison, presence: true
   
   def self.actifs
-    Chantier.where(cloture: false).order(:nom)
+    Chantier.all.where(cloture: false)
   end
 
   def self.clotures
-    Chantier.where(cloture: true).order(:nom)
+    Chantier.all.where(cloture: true)
   end
    
   def nom_complet

@@ -13,7 +13,7 @@
 
   <div>
     <%= form.label :chantier_id, style: "display: block" %>
-    <%= form.collection_select(:chantier_id, Chantier.all.order(:nom), :id, :nom_complet, { prompt: 'Choisir un chantier' }) %>
+    <%= form.collection_select(:chantier_id, Chantier.actifs.order(:nom), :id, :nom_complet, { prompt: 'Choisir un chantier' }) %>
   </div>
 
   <div data-controller="select">
