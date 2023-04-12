@@ -8,6 +8,8 @@ class Utilisation < ApplicationRecord
   attr_accessor :origines
   attribute :matiere
   attribute :matiere_id
+
+  validates :quantite, presence: true
   
   def matiere
     if self.ressource

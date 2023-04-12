@@ -4,18 +4,5 @@
   <%= link_to "Nouvelle ressource", new_ressource_path %>
 </p>
 
-<table  class="styled-table" id="ressources">
-	<tr>
-		<th>Matière</div>
-		<th>Epaisseur</div>
-		<th>Dimensions</div>
-		<th>Couleur</div>
-		<th>Qualité</div>
-	</tr>
-  <% @ressources.each do |ressource| %>
-    <tr>
-      <%= render ressource %> 
-    </tr>
-  <% end %>
-</table>
+<%= render "ressources", ressources: @ressources %>
 

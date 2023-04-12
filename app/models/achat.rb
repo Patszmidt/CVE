@@ -6,6 +6,8 @@ class Achat < ApplicationRecord
 
   attribute :matiere
   attribute :matiere_id
+
+  validates :quantite, presence: true
   
   def matiere
     if self.ressource

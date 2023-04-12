@@ -4,6 +4,7 @@ class Chantier < ApplicationRecord
   has_many :utilisations
   has_many :achats
   validates :nom, uniqueness: { message: "existe déjà", case_sensitive: false }
+  validates :nom, presence: true
   validates :date_de_livraison, presence: true
   
   def self.actifs

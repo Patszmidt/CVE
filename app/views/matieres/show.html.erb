@@ -1,20 +1,13 @@
-<p style="color: green"><%= notice %></p>
-
-<div class="table" id="matiere">
+<table  class="styled-table" id="matiere">
+	<tr>
+		<th>Nom</th>
+	</tr>
 	<%= render @matiere %>
-	<div class="table-cell"><%= link_to "Modifier cette matiere", edit_matiere_path(@matiere) %></div>
-	</div>
-</div>
+  <tr><td><%= link_to "Modifier cette matiere", edit_matiere_path(@matiere) %></td></tr>
+</table>
 <h2>Ressources associées à cette matière</h2>
-<div class="table" id="ressources">
-  <% @matiere.ressources.each do |ressource| %>
-    <%= render ressource %>
-    <div class="table-cell">
-      <%= link_to "Détails de la ressource", ressource %>
-    </div>
-   </div>
-  <% end %>
-</div>
+
+<%= render "ressources/ressources", ressources: @matiere.ressources %>
 <p>
 	<%= link_to "Liste des matieres", matieres_path %>
-</p>
+</p> 

@@ -4,13 +4,5 @@
   <%= link_to "Nouvelle matière", new_matiere_path %>
 </p>
 
-<div class="table" id="matieres">
-  <% @matieres.each do |matiere| %>
-    <%= render matiere %>
-    <div class="table-cell">
-      <%= link_to "Détails de la matiere", matiere %>
-    </div>
-   </div>
-  <% end %>
-</div>
+<%= render "matieres", matieres: @matieres %>
 
