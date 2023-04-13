@@ -20,11 +20,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_11_131844) do
     t.date "date_de_achat"
     t.date "date_de_livraison"
     t.boolean "livre"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.integer "quantite"
     t.string "commentaire"
-    t.bigint "user_id"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.bigint "commande_id"
     t.index ["chantier_id"], name: "index_achats_on_chantier_id"
     t.index ["commande_id"], name: "index_achats_on_commande_id"
@@ -39,7 +39,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_11_131844) do
     t.datetime "updated_at", null: false
     t.date "date_de_livraison"
     t.boolean "livre"
-    t.boolean "cloture"
+    t.boolean "cloture", default: false
     t.index ["client_id"], name: "index_chantiers_on_client_id"
   end
 
