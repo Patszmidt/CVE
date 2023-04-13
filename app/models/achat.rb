@@ -40,6 +40,7 @@ class Achat < ApplicationRecord
     achat.quantite = utilisation.quantite
     achat.livre = false
     commande.achats << achat
+    return achat
   end
 
 end

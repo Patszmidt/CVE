@@ -6,6 +6,7 @@ class Utilisation < ApplicationRecord
   belongs_to :ressource
   
   attr_accessor :origines
+  attr_accessor :dom_id
   attribute :matiere
   attribute :matiere_id
 

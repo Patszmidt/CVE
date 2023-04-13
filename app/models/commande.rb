@@ -1,6 +1,7 @@
 class Commande < ApplicationRecord
 
   validates :numero_de_commande, presence: true
+  validates :numero_de_commande, uniqueness: { message: "existe déjà", case_sensitive: false }
 
   belongs_to :fournisseur
   belongs_to :user

@@ -1,4 +1,5 @@
-<tr>
+<% utilisation.dom_id = "utilisation_#{utilisation.chantier.id}_#{utilisation.ressource.id}" %>
+<tr id=<%= utilisation.dom_id %>>
     <td><%= utilisation.chantier.quantite_utilisee(utilisation.ressource) %></td>
     <td><%= utilisation.chantier.quantite_achetee(utilisation.ressource) %></td>
     <td><%= utilisation.quantite %></td>
@@ -11,6 +12,7 @@
                 <%= hidden_field_tag "chantier_id", utilisation.chantier.id %>
                 <%= hidden_field_tag "ressource_id", utilisation.ressource.id %>
                 <%= hidden_field_tag "quantite", utilisation.quantite %>
+                <%= hidden_field_tag "dom_id", utilisation.dom_id %>
                 <%= form.submit "Acheter" %>
             <% end %>
         <% end %>

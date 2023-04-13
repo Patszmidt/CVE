@@ -63,6 +63,7 @@ class AchatsController < ApplicationController
 
   def create_from_virtuelle
     origines = params[:origines].split(',')
+    @dom_id = params[:dom_id]
     @utilisations = []
     origines.each do |o|
       @utilisations << Utilisation.find(o)
@@ -74,7 +75,7 @@ class AchatsController < ApplicationController
     @utilisation.ressource = Ressource.find(params[:ressource_id])
     @utilisation.quantite = params[:quantite]
     @achat = current_user.achats.create_from(@utilisation, @commande)
-    if @achat
+    if @achat.save
       @utilisations.each do |u|
         u.checked = true
         u.save
@@ -150,6 +151,6 @@ class AchatsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def achat_params
-      params.require(:achat).permit(:user_id, :chantier_id, :ressource_id, :commande_id, :date_de_livraison, :livre, :matiere_id, :quantite, :commentaire, :origines)
+      params.require(:achat).permit(:user_id, :chantier_id, :ressource_id, :commande_id, :date_de_livraison, :livre, :matiere_id, :quantite, :commentaire, :origines, :dom_id)
     end
 end

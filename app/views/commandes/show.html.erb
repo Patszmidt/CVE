@@ -6,10 +6,12 @@
 
 <%= render "commandes/ressources", commande: @commande %>
 
+<h2>Achats par chantier</h2>
+
 <% @commande.chantiers.each do |chantier| %>
 
   <h3><%= chantier.nom_complet %></h3>
-  <%= render "achats/achats", achats: chantier.achats.where(commande_id: @commande.id).sort_by{|a| a.ressource_id} %>
+  <%= render "chantiers/achats", achats: chantier.achats.where(commande_id: @commande.id).sort_by{|a| a.ressource_id} %>
 
 <% end %>
 
