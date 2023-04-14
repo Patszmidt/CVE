@@ -9,10 +9,11 @@ Rails.application.routes.draw do
   end
 
   resources :fournisseurs
-  get 'users/index'
-  get 'users/edit'
+  
   resources :achats
   devise_for :users
+  get 'users/index'
+  get 'users/edit'
   
   resources :utilisations do
     collection do
@@ -29,7 +30,11 @@ Rails.application.routes.draw do
   post "/chantiers/:id/trier_par_ressources", to: 'utilisations#trier_par_ressources', as: 'trier_par_ressources_utilisations'
 
   resources :ressources
-  resources :matieres
+  
+  resources :matieres do 
+    resources :ressources, shallow: true
+  end
+
   resources :machines
   resources :utilisateurs
   resources :users

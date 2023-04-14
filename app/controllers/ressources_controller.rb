@@ -24,13 +24,25 @@ class RessourcesController < ApplicationController
   def create
     @ressource = Ressource.new(ressource_params)
 
-    respond_to do |format|
-      if @ressource.save
-        format.html { redirect_to ressource_url(@ressource), notice: "Ressource was successfully created." }
-        format.json { render :show, status: :created, location: @ressource }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @ressource.errors, status: :unprocessable_entity }
+    if params[:matiere_id]
+      @matiere = Matiere.find(params[:matiere_id])
+      @matiere.ressources << @ressource
+      respond_to do |format|
+        if @ressource.save
+          format.turbo_stream
+        else
+          format.html { render :index, status: :unprocessable_entity }
+        end
+      end
+    else
+      respond_to do |format|
+        if @ressource.save
+          format.html { redirect_to ressource_url(@ressource), notice: "Ressource was successfully created." }
+          format.json { render :show, status: :created, location: @ressource }
+        else
+          format.html { render :new, status: :unprocessable_entity }
+          format.json { render json: @ressource.errors, status: :unprocessable_entity }
+        end
       end
     end
   end

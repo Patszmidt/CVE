@@ -8,6 +8,29 @@
 <h2>Ressources associées à cette matière</h2>
 
 <%= render "ressources/ressources", ressources: @matiere.ressources %>
-<p>
-	<%= link_to "Liste des matieres", matieres_path %>
-</p> 
+
+<h2>Ajouter une ressource à cette matière</h2>
+
+<%= form_with(model: [@matiere, @matiere.ressources.new]) do |form| %>
+<div>
+    <%= form.label :epaisseur, style: "display: block" %>
+    <%= form.text_field :epaisseur %>mm
+  </div>
+
+  <div>
+    <%= form.label :dimension, style: "display: block" %>
+    <%= form.text_field :dimension %>
+  </div>
+  
+  <div>
+    <%= form.label :couleur, style: "display: block" %>
+    <%= form.text_field :couleur %>
+  </div>
+  
+  <div>
+    <%= form.label :qualite, style: "display: block" %>
+    <%= form.text_field :qualite %>
+  </div>
+
+    <%= form.submit "Ajouter à #{@matiere.nom}" %>
+<% end %>
