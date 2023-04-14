@@ -10,5 +10,13 @@ class Ressource < ApplicationRecord
   def quantite_utilisee
     utilisations.sum{|u| u.quantite}
   end
+
+  def quantite_achetee
+    achats.sum{|u| u.quantite}
+  end
+
+  def chantiers
+    extraire_chantiers(achats + utilisations)
+  end
   
 end

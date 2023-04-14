@@ -1,14 +1,42 @@
 <table  class="styled-table" id="ressource">
 	<tr>
-		<th>Matière</div>
-		<th>Epaisseur</div>
-		<th>Dimensions</div>
-		<th>Couleur</div>
-		<th>Qualité</div>
+		<th>Matière</th>
+		<th>Epaisseur</th>
+		<th>Dimensions</th>
+		<th>Couleur</th>
+		<th>Qualité</th>
 	</tr>
 	<%= render @ressource %>
 	<tr><td><%= link_to "Modifier cette ressource", edit_ressource_path(@ressource) %></td></tr>
 </table>
-<p>
-	<%= link_to "Liste des ressources", ressources_path %>
-</p>
+
+<h2>Mouvements sur la ressource</h2>
+
+<table  class="styled-table" id="mouvements_ressource">
+	<tr>
+		<th>Quantité utilisée</th>
+		<th>Quantité achetée</th>
+	</tr>
+	<tr>
+		<td><%= @ressource.quantite_utilisee %></td>
+		<td><%= @ressource.quantite_achetee %></td>
+	</tr>
+</table>
+
+<h2>Mouvements par chantier</h2>
+
+<% @ressource.chantiers.each do |chantier| %>
+
+	<h3><%= link_to chantier.nom_complet, chantier %></h3>
+	<table  class="styled-table" id="mouvements_ressource_chantier_<%= chantier.id %>">
+		<tr>
+			<th>Quantité utilisée</th>
+			<th>Quantité achetée</th>
+		</tr>
+		<tr>
+			<td><%= chantier.quantite_utilisee(@ressource) %></td>
+			<td><%= chantier.quantite_achetee(@ressource) %></td>
+		</tr>
+	</table>
+
+<% end %>

@@ -7,17 +7,18 @@
 
 <h2>Chantiers associés à ce client</h2>
 
-<table id="chantiers"  class="styled-table">
-  <tr>
-    <th>Chantier</th>
-    <th>Achats à passer?</th>
-  </tr>
-  <% @client.chantiers.each do |chantier| %>
-    <%= render chantier %>
-  <% end %>
-</table>
+<%= form_with url: list_chantiers_path, data: { controller: "search-form", search_form_target: "form" } do |form| %>
+    <%= form.text_field :nom, placeholder: "Nom du chantier", autocomplete: "off", data: { action: "input->search-form#search" } %>
+    <%= hidden_field_tag "control", select_chantiers %>
+<% end %>
 
-<p>
-	<%= link_to "Liste des clients", clients_path %>
-</p>
+<h2>Chantiers actifs</h2>
+
+<%= render partial: 'chantiers/chantiers', locals: {chantiers: @client.chantiers_actifs, chantiers_id: "chantiers_actifs"} %>
+
+<h2>Chantiers cloturés</h2>
+
+<%= render partial: "chantiers/chantiers", locals: {chantiers: @client.chantiers_clotures, chantiers_id: "chantiers_clotures"} %>
+
+
 

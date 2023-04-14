@@ -16,8 +16,15 @@ class ChantiersController < ApplicationController
   end
 
   def list
-    @chantiers_actifs = Chantier.actifs
-    @chantiers_clotures = Chantier.clotures
+    if params[:control] == "chantiers"
+      @chantiers_actifs = Chantier.actifs
+      @chantiers_clotures = Chantier.clotures
+    else
+      @client = Client.find(params[:control])
+      @chantiers_actifs = @client.chantiers_actifs
+      @chantiers_clotures = @client.chantiers_clotures
+    end
+    
     @chantiers_actifs = @chantiers_actifs.where('nom ilike ?', "%#{params[:nom]}%") if params[:nom].present?
     @chantiers_clotures = @chantiers_clotures.where('nom ilike ?', "%#{params[:nom]}%") if params[:nom].present?
     if params[:column] == "client"

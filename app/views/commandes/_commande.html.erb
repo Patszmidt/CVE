@@ -4,11 +4,11 @@
   </td>
 
   <td>
-    <%= commande.fournisseur.nom %>
+    <%= link_to commande.fournisseur.nom, commande.fournisseur %>
   </td>
 
   <td>
-    <%= commande.numero_de_commande %>
+    <%= link_to commande.numero_de_commande, commande %>
   </td>
   <td>
         <% unless commande.livree %>

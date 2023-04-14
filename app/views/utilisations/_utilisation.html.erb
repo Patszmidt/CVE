@@ -2,14 +2,12 @@
 
     <td><%= utilisation.date.strftime("%d/%m/%Y") %></td>
     <td><%= utilisation.quantite %></td>
-    <td><%= utilisation.ressource.nom_complet %></td>
+    <td><%= link_to utilisation.ressource.nom_complet, utilisation.ressource %></td>
     <td><%= utilisation.machine.nom %></td>
     <td><%= link_to utilisation.chantier.nom_complet, utilisation.chantier, data: { turbo: false } %></td>
     <% unless utilisation.checked %>
         <td>        
-            <%= form_with(url: traiter_utilisation_path(utilisation), method: :post ) do |form| %>
-                <%= form.submit "Traiter" %>
-            <% end %>
+            A Traiter
         </td>
         <td>
             A Commander

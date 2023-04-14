@@ -2,9 +2,9 @@
 
     <td><%= achat.commande.date.strftime("%d/%m/%Y") %></td>
     <td><%= achat.quantite %></td>
-    <td><%= achat.ressource.nom_complet %></td>
+    <td><%= link_to achat.ressource.nom_complet, achat.ressource %></td>
     <td><%= link_to achat.chantier.nom_complet, achat.chantier, data: { turbo: false } %></td>
-    <td><%= achat.commande.ref_complete %></td>
+    <td><%= link_to achat.commande.ref_complete, achat.commande %></td>
 
     <td>
         <% unless achat.livre %>

@@ -2,6 +2,7 @@
 
 <%= form_with url: list_chantiers_path, data: { controller: "search-form", search_form_target: "form" } do |form| %>
     <%= form.text_field :nom, placeholder: "Nom du chantier", autocomplete: "off", data: { action: "input->search-form#search" } %>
+    <%= hidden_field_tag "control", select_chantiers %>
 <% end %>
 
 <h2>Chantiers actifs</h2>

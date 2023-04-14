@@ -1,6 +1,6 @@
 <tr id="<%= dom_id fournisseur %>">
   <td>
-    <%= fournisseur.nom %>
+    <%= link_to fournisseur.nom, fournisseur %>
   </td>
 
   <td><%= link_to "Modifier", edit_fournisseur_path(fournisseur), data: { turbo: false } %></td>

@@ -3,19 +3,19 @@
         <tr>
             <th id="chantiers-nom" class="sortable-th"> 
                 <%= sort_indicator if params[:column] == "nom" %>
-                <%= sort_link(model: "chantiers", column: "nom", label: "Nom") %>
+                <%= sort_link(model: "chantiers", column: "nom", label: "Nom", control: select_chantiers) %>
             </th>
             <th id="chantiers-client" class="sortable-th"> 
                 <%= sort_indicator if params[:column] == "client" %>
-                <%= sort_link(model: "chantiers", column: "client", label: "Client") %>
+                <%= sort_link(model: "chantiers", column: "client", label: "Client", control: select_chantiers) %>
             </th>
             <th id="chantiers-date_de_livraison" class="sortable-th"> 
                 <%= sort_indicator if params[:column] == "date_de_livraison" %>
-                <%= sort_link(model: "chantiers", column: "date_de_livraison", label: "Date de livraison") %>
+                <%= sort_link(model: "chantiers", column: "date_de_livraison", label: "Date de livraison", control: select_chantiers) %>
             </th>
             <th id="chantiers-achats" class="sortable-th"> 
                 <%= sort_indicator if params[:column] == "achats" %>
-                <%= sort_link(model: "chantiers", column: "achats", label: "Achats à passer ?") %>
+                <%= sort_link(model: "chantiers", column: "achats", label: "Achats à passer ?", control: select_chantiers) %>
             </th>
         </tr>
     </thead>

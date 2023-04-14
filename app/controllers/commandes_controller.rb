@@ -7,7 +7,12 @@ class CommandesController < ApplicationController
   end
 
   def list
-    @commandes = Commande.all
+    if params[:control] == "commandes"
+      @commandes = Commande.all
+    else
+      @fournisseur = Fournisseur.find(params[:control])
+      @commandes = @fournisseur.commandes
+    end
     @commandes = @commandes.where('numero_de_commande ilike ?', "%#{params[:numero_de_commande]}%") if params[:numero_de_commande].present?
     @commandes = @commandes.order("#{params[:column]} #{params[:direction]}")
     respond_to do |format|
