@@ -104,6 +104,6 @@ class CommandesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def commande_params
-      params.require(:commande).permit(:date, :fournisseur_id, :numero_de_commande, :livree, :user_id, :column)
+      params.require(:commande).permit(:date, :fournisseur_id, :numero_de_commande, :livree, :user_id, :column, :bon_de_commande)
     end
 end

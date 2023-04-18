@@ -8,17 +8,12 @@ export default class extends Controller {
     console.log("Hover controller connected");
   }
 
-  //async hover() {
-  //  const id = this.element.dataset.id;
-  //  const response = await fetch(`/commandes/${id}.json`);
-  //  const data = await response.json();
-  //  this.boxTarget.innerHTML = `
-  //    <p>Numero de commande: ${data.numero_de_commande}</p>
-  //  `;
-  //  this.boxTarget.style.display = "block";
-  //}
-
   hover(event) {
+
+    var box = document.getElementById("box");
+    box.style.display = "block";
+    box.style.left = event.pageX + "px";
+    box.style.top = event.pageY + "px";
     
     let id = event.currentTarget.getAttribute('id').split("_")[1]
   	console.log(id)

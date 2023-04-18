@@ -1,6 +1,7 @@
-<%= turbo_stream.replace "box" do %>
+<%= turbo_stream.update "box" do %>
     <div id="box" data-hello-target="box">
-        <h3>Commande <%= @commande.ref_complete %></h3>
+        <h3><%= link_to "Commande #{@commande.ref_complete}", @commande %></h3>
+        <%= link_to "Bon de Commande", @commande.bon_de_commande, target: '_blank' if @commande.bon_de_commande.attached? %>
 	    <%= render "commandes/ressources", commande: @commande %>
         <button data-action="hello#hide">Cacher</button>
     </div>

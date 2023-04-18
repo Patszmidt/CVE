@@ -7,6 +7,8 @@ class Commande < ApplicationRecord
   belongs_to :user
   has_many :achats
 
+  has_one_attached :bon_de_commande
+
   def ref_complete
     return "#{numero_de_commande} (#{fournisseur.nom} du #{date.strftime("%d/%m/%Y")})"
   end

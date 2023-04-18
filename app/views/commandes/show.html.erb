@@ -2,6 +2,8 @@
   <%= render @commande %>
 </table>
 
+<%= link_to "Bon de Commande", @commande.bon_de_commande, target: '_blank' if @commande.bon_de_commande.attached? %>
+
 <h2>Achats de cette commande</h2>
 
 <%= render "commandes/ressources", commande: @commande %>

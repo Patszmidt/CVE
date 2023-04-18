@@ -27,6 +27,11 @@
   </div>
 
   <div>
+    <%= form.label :bon_de_commande, style: "display: block" %>
+    <%= form.file_field :bon_de_commande %>
+  </div>
+
+  <div>
     <%= form.label "Livrée ?", style: "display: block" %>
     <%= form.check_box :livree %>
   </div>

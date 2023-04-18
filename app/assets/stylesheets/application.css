@@ -206,4 +206,12 @@ body.active .wrapper .section{
   border-bottom: 8px solid #000000;
 }
 
+#box {
+  position: absolute;
+  padding: 20px;
+  left: 0;
+  top: 0;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  background-color: #ffffff;
+}
 
