@@ -7,7 +7,7 @@
 </table>
 <h2>Ressources associées à cette matière</h2>
 
-<%= render "ressources/ressources", ressources: @matiere.ressources %>
+<%= render "ressources/ressources", ressources: @matiere.ressources.order(:matiere_id, :forme, :epaisseur, :couleur) %>
 
 <h2>Ajouter une ressource à cette matière</h2>
 
@@ -15,6 +15,11 @@
 <div>
     <%= form.label :epaisseur, style: "display: block" %>
     <%= form.text_field :epaisseur %>mm
+  </div>
+
+  <div>
+    <%= form.label :forme, style: "display: block" %>
+    <%= form.text_field :forme %>
   </div>
 
   <div>

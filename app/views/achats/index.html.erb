@@ -1,3 +1,18 @@
+<h2>Achats en attente</h2>
+
+<% if @ressources_a_acheter != [] %>
+    <%= render partial: "ressources_a_acheter", locals: { ressources: @ressources_a_acheter } %>
+<% end %>
+
+<h2>Achats en attente par chantier</h2>
+
+<% Chantier.all.each do |chantier| %>
+  <% if chantier.utilisations_virtuelles_a_acheter != [] %>
+      <h3><%= link_to chantier.nom_complet, chantier %></h3>
+      <%= render "utilisations/utilisations_virtuelles", utilisations_virtuelles: chantier.utilisations_virtuelles_a_acheter %>
+  <% end %>
+<% end %>
+
 <div>
     <h2>Afficher les achats</h2>
     

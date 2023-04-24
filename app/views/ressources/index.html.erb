@@ -1,5 +1,7 @@
 <h1>Ressources</h1>
 
+<%= render partial: "ressources_a_acheter", locals: { ressources: Ressource.a_acheter } %>
+
 <p>
   <%= link_to "Nouvelle ressource", new_ressource_path %>
 </p>

@@ -47,6 +47,6 @@
 <h2>Utilisations par chantier</h2>
 
 <% @utilisations.map{|u| u.chantier}.uniq.each do |chantier| %>
-    <h3><%= chantier.nom_complet %></h3>
+    <h3><%= link_to chantier.nom_complet, chantier %></h3>
     <%= render "utilisations/utilisations_virtuelles", utilisations_virtuelles: chantier.utilisations_virtuelles %>
 <% end %>

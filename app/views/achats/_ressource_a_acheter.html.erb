@@ -1,0 +1,6 @@
+<tr>
+    <td><%= link_to ressource.nom_complet, ressource %></td>
+    <% quantite_a_acheter = 0 %>
+    <% @utilisations_virtuelles_a_acheter.select{|u| u.ressource == ressource}.each{|u| quantite_a_acheter += u.quantite} %>
+    <td><%= quantite_a_acheter %></td>
+</tr>

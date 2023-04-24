@@ -1,0 +1,11 @@
+<table id="ressources_a_acheter" class="styled-table">
+  <tr>
+    <th>Quantité utilisée</th>
+    <th>Quantité achetée</th>
+    <th>Quantité à acheter</th>
+    <th>Ressource</th>
+  </tr>  
+    <% ressources.each do |ressource| %>
+        <%= render partial: "ressource_a_acheter", locals: { ressource: ressource } %>
+    <% end %>
+  </table>

@@ -17,6 +17,8 @@ class AchatsController < ApplicationController
     else
       @achats = achats
     end
+
+    achats_en_attente
     
     if turbo_frame_request?
       render partial: "achats", locals: { achats: @achats }
@@ -107,7 +109,7 @@ class AchatsController < ApplicationController
 
     respond_to do |format|
       if @achat.save
-        format.html { redirect_to chantier_url(@achat.chantier), notice: "Achat was successfully created." }
+        format.html { redirect_to commande_url(@achat.commande), notice: "Achat was successfully created." }
         format.json { render :show, status: :created, location: @achat }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -120,7 +122,7 @@ class AchatsController < ApplicationController
   def update
     respond_to do |format|
       if @achat.update(achat_params)
-        format.html { redirect_to chantier_url(@achat.chantier), notice: "Achat was successfully updated." }
+        format.html { redirect_to commande_url(@achat.commande), notice: "Achat was successfully updated." }
         format.json { render :show, status: :ok, location: @achat }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -143,6 +145,16 @@ class AchatsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_achat
       @achat = Achat.find(params[:id])
+    end
+
+    def achats_en_attente
+      @utilisations_virtuelles_a_acheter = []
+      Chantier.all.each do |chantier|
+        @utilisations_virtuelles_a_acheter += chantier.utilisations_virtuelles_a_acheter
+      end
+      @ressources_a_acheter = @utilisations_virtuelles_a_acheter.map{|u| u.ressource}.uniq  
+
+
     end
 
     def set_ressources

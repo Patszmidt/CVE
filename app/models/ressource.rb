@@ -4,7 +4,7 @@ class Ressource < ApplicationRecord
   has_many :achats
   
   def nom_complet
-    return "#{self.matiere.nom} #{self.epaisseur}mm #{self.dimension} #{self.couleur} #{self.qualite}"
+    return "#{self.matiere.nom} #{self.epaisseur}mm #{self.forme} #{self.dimension} #{self.couleur} #{self.qualite}"
   end
   
   def quantite_utilisee
@@ -17,6 +17,16 @@ class Ressource < ApplicationRecord
 
   def chantiers
     extraire_chantiers(achats + utilisations)
+  end
+
+  def self.a_acheter
+    a_acheter = []
+    Ressource.all.each do |r|
+      if r.quantite_utilisee > r.quantite_achetee
+        a_acheter << r
+      end
+    end
+    return a_acheter
   end
   
 end

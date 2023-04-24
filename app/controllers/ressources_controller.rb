@@ -4,7 +4,7 @@ class RessourcesController < ApplicationController
 
   # GET /ressources or /ressources.json
   def index
-    @ressources = Ressource.all.order(:matiere_id, :epaisseur, :couleur)
+    @ressources = Ressource.all.order(:matiere_id, :forme, :epaisseur, :couleur)
   end
 
   # GET /ressources/1 or /ressources/1.json
@@ -82,6 +82,6 @@ class RessourcesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def ressource_params
-      params.require(:ressource).permit(:epaisseur, :dimension, :matiere_id, :couleur, :qualite)
+      params.require(:ressource).permit(:epaisseur, :dimension, :matiere_id, :couleur, :qualite, :forme)
     end
 end

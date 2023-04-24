@@ -18,7 +18,8 @@
         <% else %>
             Livrée le <%= commande.date_de_livraison.strftime("%d/%m/%Y") %>
         <% end %>    
-    </td>
+  </td>
+  <td><%= link_to "Afficher", commande, data: { turbo: false } %></td>
   <td><%= link_to "Modifier", edit_commande_path(commande), data: { turbo: false } %></td>
 
 </tr>

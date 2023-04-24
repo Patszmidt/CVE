@@ -130,7 +130,7 @@ class UtilisationsController < ApplicationController
   
   def ressources
     @target = params[:target]
-    @ressources = Matiere.find_by_id(params[:matiere]).ressources.order(:epaisseur, :couleur)
+    @ressources = Matiere.find_by_id(params[:matiere]).ressources.order(:matiere_id, :forme, :epaisseur, :couleur)
     
     respond_to do |format|
       format.turbo_stream
@@ -144,7 +144,7 @@ class UtilisationsController < ApplicationController
     end
     
     def set_ressources
-      @ressources = Ressource.all.order(:matiere_id, :epaisseur, :couleur)
+      @ressources = Ressource.all.order(:matiere_id, :forme, :epaisseur, :couleur)
     end
 
     # Only allow a list of trusted parameters through.
